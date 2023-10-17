@@ -1,0 +1,5 @@
+﻿dotnet ef DBContext scaffold "server = VIPXPERT\SQLEXPRESS; database = MusicStore;user = sa; password = 123456;TrustServerCertificate=true;Encrypt = false" Microsoft.EntityFrameworkCore.SqlServer -o Models --project C:\Users\Asus\source\repos\WinFormsApp1\WinFormsApp1\ㅤ{
+  "ConnectionStrings": {
+    "DefaultConnection": "server = VIPXPERT\\MSSQLSERVER01; database = PE_Fall21B5;user = sa; password = 123456;TrustServerCertificate=true;Encrypt = false"
+  }
+}

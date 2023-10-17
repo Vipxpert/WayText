@@ -1,0 +1,16 @@
+C:\Users\Asus\source\repos\Emoji\Emoji\bin\Debug\net6.0-windows\CopyToolGUI.exe
+C:\Users\Asus\source\repos\Emoji\Emoji\bin\Debug\net6.0-windows\CopyToolGUI.deps.json
+C:\Users\Asus\source\repos\Emoji\Emoji\bin\Debug\net6.0-windows\CopyToolGUI.runtimeconfig.json
+C:\Users\Asus\source\repos\Emoji\Emoji\bin\Debug\net6.0-windows\CopyToolGUI.dll
+C:\Users\Asus\source\repos\Emoji\Emoji\bin\Debug\net6.0-windows\CopyToolGUI.pdb
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\Emoji.Form1.resources
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\CopyToolGUI.csproj.GenerateResource.cache
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\CopyToolGUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\CopyToolGUI.AssemblyInfoInputs.cache
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\CopyToolGUI.AssemblyInfo.cs
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\CopyToolGUI.csproj.CoreCompileInputs.cache
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\CopyToolGUI.dll
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\refint\CopyToolGUI.dll
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\CopyToolGUI.pdb
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\CopyToolGUI.genruntimeconfig.cache
+C:\Users\Asus\source\repos\Emoji\Emoji\obj\Debug\net6.0-windows\ref\CopyToolGUI.dll
