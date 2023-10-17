@@ -29,6 +29,8 @@ Use AppConfig.json to change settings:
 - folderDelimiter: If you want to scan for folders that include a spcific string
 - dataDelimiter: For separate the elements in a txt file
 - maxNumberOfColumnVisible: As it said
+- excludedFolderFromAll: Exclude these folder when you select all types
+- startTypeIndex: Start from the nth type when open the app up
 
 Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^v^)
 
