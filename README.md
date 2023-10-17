@@ -3,8 +3,8 @@ Instantly find and copy important stuffs
 
 ![Screenshot 2023-10-17 231817](https://github.com/Vipxpert/CopyTool/assets/68524186/63479662-9703-414a-8bf3-21b91fb04189)
 
-CopyTool is an app that allows you to oranize data that you need to copy paste frequently as a routine by simply editting txt files
-It can be helpful for storing information that you can't remember or type out easily. For etc emoji, regex, phone number,...
+CopyTool is an app that allows you to oranize data that you need to copy paste frequently as a routine by simply editting txt files on Windows
+It can be helpful for storing information that you can't remember or type out easily. For etc emoji, kaomoji, regex, phone number,...
 
 Run CopyTool.exe to run shortcuts override. CopyToolGui.exe is the app UI
 
