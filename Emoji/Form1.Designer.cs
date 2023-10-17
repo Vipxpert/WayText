@@ -31,6 +31,8 @@
             dataGridView1 = new DataGridView();
             CBCategories = new ComboBox();
             panel1 = new Panel();
+            LBParamCount = new Label();
+            LBInputCount = new Label();
             TBParam = new TextBox();
             LBRandom = new Label();
             RegexMaxRandomLength = new NumericUpDown();
@@ -84,6 +86,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(LBParamCount);
+            panel1.Controls.Add(LBInputCount);
             panel1.Controls.Add(TBParam);
             panel1.Controls.Add(LBRandom);
             panel1.Controls.Add(RegexMaxRandomLength);
@@ -107,12 +111,30 @@
             panel1.Paint += panel1_Paint;
             panel1.MouseClick += panel1_MouseClick;
             // 
+            // LBParamCount
+            // 
+            LBParamCount.AutoSize = true;
+            LBParamCount.Location = new Point(208, 174);
+            LBParamCount.Name = "LBParamCount";
+            LBParamCount.Size = new Size(13, 15);
+            LBParamCount.TabIndex = 19;
+            LBParamCount.Text = "0";
+            // 
+            // LBInputCount
+            // 
+            LBInputCount.AutoSize = true;
+            LBInputCount.Location = new Point(208, 201);
+            LBInputCount.Name = "LBInputCount";
+            LBInputCount.Size = new Size(13, 15);
+            LBInputCount.TabIndex = 18;
+            LBInputCount.Text = "0";
+            // 
             // TBParam
             // 
             TBParam.Location = new Point(19, 166);
             TBParam.Name = "TBParam";
             TBParam.PlaceholderText = "Parameter";
-            TBParam.Size = new Size(212, 23);
+            TBParam.Size = new Size(183, 23);
             TBParam.TabIndex = 17;
             TBParam.Visible = false;
             TBParam.TextChanged += TBParam_TextChanged;
@@ -213,7 +235,7 @@
             TBInput.Margin = new Padding(3, 2, 3, 2);
             TBInput.Name = "TBInput";
             TBInput.PlaceholderText = "Input";
-            TBInput.Size = new Size(212, 23);
+            TBInput.Size = new Size(183, 23);
             TBInput.TabIndex = 6;
             TBInput.TextChanged += TBInput_TextChanged;
             // 
@@ -290,5 +312,7 @@
         private NumericUpDown RegexMaxRandomLength;
         private NumericUpDown RegexMinRandomLength;
         private TextBox TBParam;
+        private Label LBParamCount;
+        private Label LBInputCount;
     }
 }

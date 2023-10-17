@@ -93,7 +93,8 @@ namespace Emoji
                 }
             }
         }
-
+        System.Windows.Forms.ToolTip toolTip3 = new System.Windows.Forms.ToolTip();
+        System.Windows.Forms.ToolTip toolTip4 = new System.Windows.Forms.ToolTip();
         private void Form1_Load(object sender, EventArgs e)
         {
             //Get cursor position
@@ -143,22 +144,20 @@ namespace Emoji
             toolTip1.InitialDelay = 1500;
             toolTip1.ReshowDelay = 500;
             toolTip1.SetToolTip(panel1, "Right click to exit \nLeft click to drag");
-
-            System.Windows.Forms.ToolTip toolTip2 = new System.Windows.Forms.ToolTip();
-            toolTip2.ToolTipTitle = "Hint";
-            toolTip2.ShowAlways = false;
-            toolTip2.AutoPopDelay = 3000;
-            toolTip2.InitialDelay = 500;
-            toolTip2.ReshowDelay = 500;
-            toolTip2.SetToolTip(TBParam, "Input the parameter string");
-
-            System.Windows.Forms.ToolTip toolTip3 = new System.Windows.Forms.ToolTip();
-            toolTip3.ToolTipTitle = "Hint";
+            
+            //toolTip3.ToolTipTitle = "Hint";
             toolTip3.ShowAlways = false;
             toolTip3.AutoPopDelay = 3000;
             toolTip3.InitialDelay = 500;
             toolTip3.ReshowDelay = 500;
-            toolTip3.SetToolTip(TBInput, "Input string that's need to be processed here");
+            toolTip3.SetToolTip(TBInput, "Output and input to be processed are here");
+
+            //toolTip3.ToolTipTitle = "Hint";
+            toolTip3.ShowAlways = false;
+            toolTip3.AutoPopDelay = 3000;
+            toolTip3.InitialDelay = 500;
+            toolTip3.ReshowDelay = 500;
+            toolTip3.SetToolTip(TBParam, "Parameters to process inputs with based on actions");
 
             this.MouseDown += new MouseEventHandler(Form1_MouseDown);
             this.MouseUp += new MouseEventHandler(Form1_MouseUp);
@@ -588,6 +587,7 @@ namespace Emoji
             if (CBTextAction.SelectedItem.ToString() == "Z̷̤̣̲ͮͤ͜ą̲̬̲̪̠ͮļ̞̯̺ͧ͞͡g̷̶̴̴̟ͥͫo̯̱ͪͭͩ͜͞f̡̢̤̤̞ͨ͜y̵̜̲̬̞̱͡")
             {
                 TBParam.Visible = false;
+                LBParamCount.Visible = false;
                 LBRandom.Visible = false;
                 RegexMaxRandomLength.Visible = false;
                 RegexMinRandomLength.Visible = false;
@@ -597,6 +597,7 @@ namespace Emoji
             else if (CBTextAction.SelectedItem.ToString() == "Trim string")
             {
                 TBParam.Visible = true;
+                LBParamCount.Visible = true;
                 LBRandom.Visible = false;
                 RegexMaxRandomLength.Visible = false;
                 RegexMinRandomLength.Visible = false;
@@ -606,6 +607,7 @@ namespace Emoji
             else if (CBTextAction.SelectedItem.ToString() == "Trim chrcter")
             {
                 TBParam.Visible = true;
+                LBParamCount.Visible = true;
                 LBRandom.Visible = false;
                 RegexMaxRandomLength.Visible = false;
                 RegexMinRandomLength.Visible = false;
@@ -615,6 +617,7 @@ namespace Emoji
             else if (CBTextAction.SelectedItem.ToString() == "Regex check")
             {
                 TBParam.Visible = true;
+                LBParamCount.Visible = true;
                 LBRandom.Visible = false;
                 RegexMaxRandomLength.Visible = false;
                 RegexMinRandomLength.Visible = false;
@@ -625,6 +628,7 @@ namespace Emoji
             else if (CBTextAction.SelectedItem.ToString() == "Random text generator")
             {
                 TBParam.Visible = true;
+                LBParamCount.Visible = true;
                 LBRandom.Visible = true;
                 RegexMaxRandomLength.Visible = true;
                 RegexMinRandomLength.Visible = true;
@@ -633,7 +637,8 @@ namespace Emoji
             }
             else
             {
-                TBParam.Visible = false;
+                TBParam.Visible = true;
+                LBParamCount.Visible = true;
                 RegexMaxRandomLength.Visible = false;
                 RegexMinRandomLength.Visible = false;
                 ZalgoIntensity.Visible = false;
@@ -651,6 +656,8 @@ namespace Emoji
             {
                 originalText = TBInput.Text;
             }
+            LBInputCount.Text = TBInput.Text.Length.ToString();
+            toolTip3.SetToolTip(TBInput, TBInput.Text);
         }
 
         private void BTEmpty_Click(object sender, EventArgs e)
@@ -742,7 +749,7 @@ namespace Emoji
             }
             else if (CBTextAction.SelectedItem.ToString() == "Random text generator")
             {
-                if (RegexMinRandomLength.Value >= RegexMaxRandomLength.Value)
+                if (RegexMinRandomLength.Value > RegexMaxRandomLength.Value)
                     MessageBox.Show("Min cannot greater than max");
                 else
                     TBInput.Text = RandomText.RandomTextGenerate(TBParam.Text, Convert.ToInt32(RegexMinRandomLength.Value), Convert.ToInt32(RegexMaxRandomLength.Value));
@@ -875,7 +882,8 @@ namespace Emoji
 
         private void TBParam_TextChanged(object sender, EventArgs e)
         {
-
+            LBParamCount.Text = TBParam.Text.Length.ToString();
+            toolTip4.SetToolTip(TBParam, TBParam.Text);
         }
 
 
