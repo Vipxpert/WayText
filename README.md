@@ -7,6 +7,8 @@ It can be helpful for storing information that you can't remember or type out ea
 
 Run CopyTool.exe to run shortcuts override. CopyToolGui.exe is the app UI
 
+Right click on blank spces to close the app
+
 F1 is the hotkey to open the app. And no. There isn't any way to customize that. It's not a feature... yet. You might use AutoHotkey
 
 To conveniently edit data, click ctrl + space. This will switch the spaceㅤbarㅤbehaviourㅤtoㅤtypeㅤthisㅤcharacter,ㅤwhichㅤisㅤusedㅤasㅤtheㅤdefaultㅤdelimiter (or just to prank friends).
@@ -26,3 +28,5 @@ Use AppConfig.json to change settings:
 - maxNumberOfColumnVisible: As it said
 
 Made with Visual Studio and AutoHotkey
+
+(￣ω￣)p
