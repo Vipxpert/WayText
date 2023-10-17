@@ -17,7 +17,8 @@ namespace Emoji
     public partial class Form1 : Form
     {
 
-        int i = 0, numberOfColumn = 0, maxNumberOfColumnVisible = 5, formHeight = 371;
+        int i = 0, numberOfColumn = 0, maxNumberOfColumnVisible = 5, formHeight = 371, startTypeIndex = 0;
+        string[] excludedFolderFromAll;
         bool headerExpand = true;
         //Delimiter for folders's name. Make null if unused
         string folderDelimiter = "";
@@ -51,6 +52,8 @@ namespace Emoji
                     dataDelimiter = config.dataDelimiter;
                     maxNumberOfColumnVisible = config.maxNumberOfColumnVisible;
                     formHeight = config.formHeight;
+                    excludedFolderFromAll = config.excludedFolderFromAll;
+                    startTypeIndex = config.startTypeIndex;
                 }
                 catch
                 {
@@ -202,8 +205,12 @@ namespace Emoji
                         //MessageBox.Show(folder);
                         foreach (string file in structure[i])
                         {
-                            //MessageBox.Show("Folder: " + folder + " File: " + file);
-                            list.Add(NewColumn(type, folderNames[i], file));
+                            // Check if the folder is in the excludedFolderFromAll array
+                            if (!excludedFolderFromAll.Contains(folder))
+                            {
+                                // Add the item to the list only if the folder is not in the excluded list
+                                list.Add(NewColumn(type, folderNames[i], file));
+                            }
                         }
                     }
                     int ii;
@@ -426,9 +433,19 @@ namespace Emoji
             {
                 CBTypes.Items.Add(Trim.TrimCharacter(type, "0123456789"));
             }
-            CBTypes.SelectedIndex = 0;
+            CBTypes.SelectedIndex = startTypeIndex;
 
-            InitCBCategories(CBTypes.SelectedItem.ToString());
+            string pattern = @"(\d+)([A-Za-z]+)";
+            string input = folderNames[CBTypes.SelectedIndex - 1];
+
+            if (Regex.IsMatch(input, pattern))
+            {
+                InitCBCategories(CBTypes.SelectedIndex.ToString() + Trim.TrimCharacter(folderNames[CBTypes.SelectedIndex - 1], "0123456789"));
+            }
+            else
+            {
+                InitCBCategories(CBTypes.SelectedItem.ToString());
+            }
         }
 
         public void InitCBCategories(string type)

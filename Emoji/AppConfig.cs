@@ -12,5 +12,7 @@ namespace Emoji
         public string dataDelimiter { get; set; }
         public int maxNumberOfColumnVisible { get; set; }
         public int formHeight { get; set; }
+        public string [] excludedFolderFromAll { get; set; }
+        public int startTypeIndex { get; set; }
     }
 }
