@@ -30,7 +30,7 @@ Use AppConfig.json to change settings:
 - dataDelimiter: For separate the elements in a txt file
 - maxNumberOfColumnVisible: As it said
 
-Made with Visual Studio and AutoHotkey
+Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^v^)
 
 (￣ω￣)p
 
