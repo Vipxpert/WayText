@@ -147,20 +147,20 @@ namespace Emoji
             toolTip1.InitialDelay = 1500;
             toolTip1.ReshowDelay = 500;
             toolTip1.SetToolTip(panel1, "Right click to exit \nLeft click to drag");
-            
-            //toolTip3.ToolTipTitle = "Hint";
-            toolTip3.ShowAlways = false;
-            toolTip3.AutoPopDelay = 3000;
-            toolTip3.InitialDelay = 500;
-            toolTip3.ReshowDelay = 500;
-            toolTip3.SetToolTip(TBInput, "Output and input to be processed are here");
 
             //toolTip3.ToolTipTitle = "Hint";
             toolTip3.ShowAlways = false;
             toolTip3.AutoPopDelay = 3000;
             toolTip3.InitialDelay = 500;
             toolTip3.ReshowDelay = 500;
-            toolTip3.SetToolTip(TBParam, "Parameters to process inputs with based on actions");
+            toolTip3.SetToolTip(TBInput, "Output and input to be processed are here\nHover while typing to show contents");
+
+            //toolTip4.ToolTipTitle = "Hint";
+            toolTip4.ShowAlways = false;
+            toolTip4.AutoPopDelay = 3000;
+            toolTip4.InitialDelay = 500;
+            toolTip4.ReshowDelay = 500;
+            toolTip4.SetToolTip(TBParam, "Parameters to process inputs with based on actions\nHover while typing to show contents");
 
             this.MouseDown += new MouseEventHandler(Form1_MouseDown);
             this.MouseUp += new MouseEventHandler(Form1_MouseUp);
@@ -666,16 +666,7 @@ namespace Emoji
         bool changedProgrammatically = false;
         static Random random = new Random();
 
-        private void TBInput_TextChanged(object sender, EventArgs e)
-        {
-            //Ignore if change is not made by human
-            if (!changedProgrammatically)
-            {
-                originalText = TBInput.Text;
-            }
-            LBInputCount.Text = TBInput.Text.Length.ToString();
-            toolTip3.SetToolTip(TBInput, TBInput.Text);
-        }
+
 
         private void BTEmpty_Click(object sender, EventArgs e)
         {
@@ -899,8 +890,29 @@ namespace Emoji
 
         private void TBParam_TextChanged(object sender, EventArgs e)
         {
-            LBParamCount.Text = TBParam.Text.Length.ToString();
-            toolTip4.SetToolTip(TBParam, TBParam.Text);
+            //LBParamCount.Text = TBParam.Text.Length.ToString();
+            string[] words = TBParam.Text.Split(new char[] { ' ', '\n', '\r', '\t', '.', ',', ':', ';', '!', '?', '/', '|', '\'', '\\', '(', '{', '[', '"' }, StringSplitOptions.RemoveEmptyEntries);
+            if (words != null && words.Length > 0)
+                toolTip4.SetToolTip(TBParam, TBParam.Text.Length.ToString() + " characters\n" + words.Length + " words\n" + TBParam.Text);
+            else toolTip4.SetToolTip(TBParam, "Parameters to process inputs with based on actions\nHover while typing to show contents");
+
+        }
+
+        private void TBInput_TextChanged(object sender, EventArgs e)
+        {
+            //Ignore if change is not made by human
+            if (!changedProgrammatically)
+            {
+                originalText = TBInput.Text;
+            }
+            //LBInputCount.Text = TBInput.Text.Length.ToString();
+
+            string[] words = TBInput.Text.Split(new char[] { ' ', '\n', '\r', '\t', '.', ',', ':', ';', '!', '?', '/', '|', '\'', '\\', '(', '{', '[', '"' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (words != null && words.Length > 0)
+                toolTip3.SetToolTip(TBInput, " " + TBInput.Text.Length.ToString() + " characters\n " + words.Length + " words\n" + TBInput.Text);
+            else toolTip3.SetToolTip(TBInput, "Output and input to be processed are here\nHover while typing to show contents");
+
         }
 
 
