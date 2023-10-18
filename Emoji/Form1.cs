@@ -33,6 +33,11 @@ namespace Emoji
         //Intuitively structure[0] store files's name's of folderNames[0]
         List<string[]> structure = new List<string[]>();
 
+
+        string originalText;
+        bool changedProgrammatically = false;
+        static Random random = new Random();
+
         public Form1()
         {
             string configFilePath = AppDomain.CurrentDomain.BaseDirectory + "/AppConfig.json";
@@ -95,6 +100,7 @@ namespace Emoji
                     fileNames.Add(file);
                 }
             }
+            changedProgrammatically = false;
         }
         System.Windows.Forms.ToolTip toolTip3 = new System.Windows.Forms.ToolTip();
         System.Windows.Forms.ToolTip toolTip4 = new System.Windows.Forms.ToolTip();
@@ -591,7 +597,7 @@ namespace Emoji
         //Preparing layout
         private void CBTextAction_SelectedIndexChanged(object sender, EventArgs e)
         {
-            changedProgrammatically = true;
+            //changedProgrammatically = true;
             if (CBTextAction.Text == "Random text generator")
             {
                 BTAction.Text = "Generate";
@@ -654,25 +660,21 @@ namespace Emoji
             }
             else
             {
-                TBParam.Visible = true;
-                LBParamCount.Visible = true;
+                TBParam.Visible = false;
+                LBParamCount.Visible = false;
                 RegexMaxRandomLength.Visible = false;
                 RegexMinRandomLength.Visible = false;
                 ZalgoIntensity.Visible = false;
                 label3.Visible = false;
             }
         }
-        string originalText;
-        bool changedProgrammatically = false;
-        static Random random = new Random();
-
-
 
         private void BTEmpty_Click(object sender, EventArgs e)
         {
             changedProgrammatically = false;
             TBInput.Text = null;
         }
+
         //Action button click
         private void BTAction_Click(object sender, EventArgs e)
         {
@@ -685,44 +687,53 @@ namespace Emoji
                     ZalgoIntensity.Value = 10;
                 TBInput.Text = ZalgoStuffs.ZalgoFyText(originalText, ZalgoIntensity.Value);
                 //Program changed
+                MessageBox.Show("First");
                 changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "uʍop ǝpısd∩")
             {
                 string upsideDownString = UpsideDown.MakeUpsideDown(TBInput.Text);
                 TBInput.Text = upsideDownString;
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "Downside up")
             {
                 string upsideDownString = UpsideDown.MakeDownsideUp(TBInput.Text);
                 TBInput.Text = upsideDownString;
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "Mirror")
             {
                 string mirroredString = UpsideDown.MirrorLeftRight(TBInput.Text);
                 TBInput.Text = mirroredString;
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "esreveR")
             {
                 string reversedString = UpsideDown.Reverse(TBInput.Text);
                 TBInput.Text = reversedString;
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "raNDomly CApItAlizE")
             {
                 TBInput.Text = RandomCapital.RandomlyCapitalize(TBInput.Text);
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "TO UPPER CASE")
             {
                 TBInput.Text = TBInput.Text.ToUpper();
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "to lower case")
             {
                 TBInput.Text = TBInput.Text.ToLower();
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "To Title Case")
             {
                 TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
                 TBInput.Text = textInfo.ToTitleCase(TBInput.Text);
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "Trim string")
             {
@@ -730,6 +741,7 @@ namespace Emoji
                 string stringToRemove = TBParam.Text;
                 string trimmedSentence = Trim.TrimString(sentence, stringToRemove);
                 TBInput.Text = trimmedSentence;
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "Trim chrcter")
             {
@@ -737,6 +749,7 @@ namespace Emoji
                 string stringToRemove = TBParam.Text;
                 string trimmedSentence = Trim.TrimCharacter(sentence, stringToRemove);
                 TBInput.Text = trimmedSentence;
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "Simple cipher")
             {
@@ -745,6 +758,7 @@ namespace Emoji
                 string originalString = TBInput.Text;
                 string cipheredString = simpleEncrypt.SimpleCipher(originalString);
                 TBInput.Text = cipheredString;
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "Simple decipher")
             {
@@ -754,6 +768,7 @@ namespace Emoji
                 string decipheredString = simpleEncrypt.SimpleDecipher(originalString);
 
                 TBInput.Text = decipheredString;
+                changedProgrammatically = true;
             }
             else if (CBTextAction.SelectedItem.ToString() == "Random text generator")
             {
@@ -761,6 +776,7 @@ namespace Emoji
                     MessageBox.Show("Min cannot greater than max");
                 else
                     TBInput.Text = RandomText.RandomTextGenerate(TBParam.Text, Convert.ToInt32(RegexMinRandomLength.Value), Convert.ToInt32(RegexMaxRandomLength.Value));
+                changedProgrammatically = true;
             }
 
             else if (CBTextAction.SelectedItem.ToString() == "Regex check")
@@ -900,19 +916,29 @@ namespace Emoji
 
         private void TBInput_TextChanged(object sender, EventArgs e)
         {
+
             //Ignore if change is not made by human
-            if (!changedProgrammatically)
+            if (changedProgrammatically)
+            {
+                //MessageBox.Show("Later");
+                changedProgrammatically = false;
+            }
+            else
             {
                 originalText = TBInput.Text;
             }
             //LBInputCount.Text = TBInput.Text.Length.ToString();
-
+            //changedProgrammatically = false;
             string[] words = TBInput.Text.Split(new char[] { ' ', '\n', '\r', '\t', '.', ',', ':', ';', '!', '?', '/', '|', '\'', '\\', '(', '{', '[', '"' }, StringSplitOptions.RemoveEmptyEntries);
 
             if (words != null && words.Length > 0)
                 toolTip3.SetToolTip(TBInput, " " + TBInput.Text.Length.ToString() + " characters\n " + words.Length + " words\n" + TBInput.Text);
             else toolTip3.SetToolTip(TBInput, "Output and input to be processed are here\nHover while typing to show contents");
+        }
 
+        private void TBInput_Click(object sender, EventArgs e)
+        {
+            changedProgrammatically = false;
         }
 
 

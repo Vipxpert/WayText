@@ -116,6 +116,7 @@
             TBInput.PlaceholderText = "Input";
             TBInput.Size = new Size(245, 27);
             TBInput.TabIndex = 6;
+            TBInput.Click += TBInput_Click;
             TBInput.TextChanged += TBInput_TextChanged;
             // 
             // BTAction
