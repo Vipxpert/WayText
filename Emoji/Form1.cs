@@ -18,6 +18,7 @@ namespace Emoji
     {
 
         int i = 0, numberOfColumn = 0, maxNumberOfColumnVisible = 5, formHeight = 371, startTypeIndex = 0;
+        bool actionInstantCopy;
         string[] excludedFolderFromAll;
         bool headerExpand = true;
         //Delimiter for folders's name. Make null if unused
@@ -59,6 +60,7 @@ namespace Emoji
                     formHeight = config.formHeight;
                     excludedFolderFromAll = config.excludedFolderFromAll;
                     startTypeIndex = config.startTypeIndex;
+                    actionInstantCopy = config.actionInstantCopy;
                 }
                 catch
                 {
@@ -679,123 +681,140 @@ namespace Emoji
         private void BTAction_Click(object sender, EventArgs e)
         {
             SimpleEncrypt simpleEncrypt = new SimpleEncrypt();
-            if (CBTextAction.SelectedItem.ToString() == "Z̷̤̣̲ͮͤ͜ą̲̬̲̪̠ͮļ̞̯̺ͧ͞͡g̷̶̴̴̟ͥͫo̯̱ͪͭͩ͜͞f̡̢̤̤̞ͨ͜y̵̜̲̬̞̱͡")
+            if (CBTextAction.SelectedItem == null)
             {
-                if (ZalgoIntensity.Value < 1)
-                    ZalgoIntensity.Value = 1;
-                else if (ZalgoIntensity.Value > 10)
-                    ZalgoIntensity.Value = 10;
-                TBInput.Text = ZalgoStuffs.ZalgoFyText(originalText, ZalgoIntensity.Value);
-                //Program changed
-                MessageBox.Show("First");
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "uʍop ǝpısd∩")
-            {
-                string upsideDownString = UpsideDown.MakeUpsideDown(TBInput.Text);
-                TBInput.Text = upsideDownString;
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "Downside up")
-            {
-                string upsideDownString = UpsideDown.MakeDownsideUp(TBInput.Text);
-                TBInput.Text = upsideDownString;
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "Mirror")
-            {
-                string mirroredString = UpsideDown.MirrorLeftRight(TBInput.Text);
-                TBInput.Text = mirroredString;
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "esreveR")
-            {
-                string reversedString = UpsideDown.Reverse(TBInput.Text);
-                TBInput.Text = reversedString;
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "raNDomly CApItAlizE")
-            {
-                TBInput.Text = RandomCapital.RandomlyCapitalize(TBInput.Text);
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "TO UPPER CASE")
-            {
-                TBInput.Text = TBInput.Text.ToUpper();
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "to lower case")
-            {
-                TBInput.Text = TBInput.Text.ToLower();
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "To Title Case")
-            {
-                TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-                TBInput.Text = textInfo.ToTitleCase(TBInput.Text);
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "Trim string")
-            {
-                string sentence = TBInput.Text;
-                string stringToRemove = TBParam.Text;
-                string trimmedSentence = Trim.TrimString(sentence, stringToRemove);
-                TBInput.Text = trimmedSentence;
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "Trim chrcter")
-            {
-                string sentence = TBInput.Text;
-                string stringToRemove = TBParam.Text;
-                string trimmedSentence = Trim.TrimCharacter(sentence, stringToRemove);
-                TBInput.Text = trimmedSentence;
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "Simple cipher")
-            {
-                string ruleFilePath = AppDomain.CurrentDomain.BaseDirectory + "/Cipher.txt";
-                simpleEncrypt.LoadCipherRules(ruleFilePath);
-                string originalString = TBInput.Text;
-                string cipheredString = simpleEncrypt.SimpleCipher(originalString);
-                TBInput.Text = cipheredString;
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "Simple decipher")
-            {
-                string ruleFilePath = AppDomain.CurrentDomain.BaseDirectory + "/Cipher.txt";
-                simpleEncrypt.LoadCipherRules(ruleFilePath);
-                string originalString = TBInput.Text;
-                string decipheredString = simpleEncrypt.SimpleDecipher(originalString);
-
-                TBInput.Text = decipheredString;
-                changedProgrammatically = true;
-            }
-            else if (CBTextAction.SelectedItem.ToString() == "Random text generator")
-            {
-                if (RegexMinRandomLength.Value > RegexMaxRandomLength.Value)
-                    MessageBox.Show("Min cannot greater than max");
-                else
-                    TBInput.Text = RandomText.RandomTextGenerate(TBParam.Text, Convert.ToInt32(RegexMinRandomLength.Value), Convert.ToInt32(RegexMaxRandomLength.Value));
-                changedProgrammatically = true;
-            }
-
-            else if (CBTextAction.SelectedItem.ToString() == "Regex check")
-            {
-                var regex = new System.Text.RegularExpressions.Regex(TBParam.Text); // Your regex here
-                if (regex.IsMatch(TBInput.Text))
-                {
-                    MessageBox.Show(TBInput.Text + " matched");
-                    //Console.WriteLine($"Generated string '{result}' matches the regex.");
-                }
-                else
-                {
-                    MessageBox.Show(TBInput.Text + " doesn't match");
-                    //Console.WriteLine($"Generated string '{result}' does not match the regex.");
-                }
+                MessageBox.Show("Congrate! Ester egg found\nSteam achievement acquired(sarcasm)");
             }
             else
             {
-                MessageBox.Show("TODO");
+                if (CBTextAction.SelectedItem.ToString() == "Z̷̤̣̲ͮͤ͜ą̲̬̲̪̠ͮļ̞̯̺ͧ͞͡g̷̶̴̴̟ͥͫo̯̱ͪͭͩ͜͞f̡̢̤̤̞ͨ͜y̵̜̲̬̞̱͡")
+                {
+                    if (ZalgoIntensity.Value < 1)
+                        ZalgoIntensity.Value = 1;
+                    else if (ZalgoIntensity.Value > 10)
+                        ZalgoIntensity.Value = 10;
+                    TBInput.Text = ZalgoStuffs.ZalgoFyText(originalText, ZalgoIntensity.Value);
+                    //Program changed
+                    //MessageBox.Show("First");
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "uʍop ǝpısd∩")
+                {
+                    string upsideDownString = UpsideDown.MakeUpsideDown(TBInput.Text);
+                    TBInput.Text = upsideDownString;
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "Downside up")
+                {
+                    string upsideDownString = UpsideDown.MakeDownsideUp(TBInput.Text);
+                    TBInput.Text = upsideDownString;
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "Mirror")
+                {
+                    string mirroredString = UpsideDown.MirrorLeftRight(TBInput.Text);
+                    TBInput.Text = mirroredString;
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "esreveR")
+                {
+                    string reversedString = UpsideDown.Reverse(TBInput.Text);
+                    TBInput.Text = reversedString;
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "raNDomly CApItAlizE")
+                {
+                    TBInput.Text = RandomCapital.RandomlyCapitalize(TBInput.Text);
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "TO UPPER CASE")
+                {
+                    TBInput.Text = TBInput.Text.ToUpper();
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "to lower case")
+                {
+                    TBInput.Text = TBInput.Text.ToLower();
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "To Title Case")
+                {
+                    TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+                    TBInput.Text = textInfo.ToTitleCase(TBInput.Text);
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "Trim string")
+                {
+                    string sentence = TBInput.Text;
+                    string stringToRemove = TBParam.Text;
+                    string trimmedSentence = Trim.TrimString(sentence, stringToRemove);
+                    TBInput.Text = trimmedSentence;
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "Trim chrcter")
+                {
+                    string sentence = TBInput.Text;
+                    string stringToRemove = TBParam.Text;
+                    string trimmedSentence = Trim.TrimCharacter(sentence, stringToRemove);
+                    TBInput.Text = trimmedSentence;
+                    changedProgrammatically = true;
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "Simple cipher")
+                {
+                    string ruleFilePath = AppDomain.CurrentDomain.BaseDirectory + "/Cipher.txt";
+                    simpleEncrypt.LoadCipherRules(ruleFilePath);
+                    string originalString = TBInput.Text;
+                    string cipheredString = simpleEncrypt.SimpleCipher(originalString);
+                    TBInput.Text = cipheredString;
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "Simple decipher")
+                {
+                    string ruleFilePath = AppDomain.CurrentDomain.BaseDirectory + "/Cipher.txt";
+                    simpleEncrypt.LoadCipherRules(ruleFilePath);
+                    string originalString = TBInput.Text;
+                    string decipheredString = simpleEncrypt.SimpleDecipher(originalString);
+                    TBInput.Text = decipheredString;
+                    changedProgrammatically = true;
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "Random text generator")
+                {
+                    if (RegexMinRandomLength.Value > RegexMaxRandomLength.Value)
+                        MessageBox.Show("Min cannot greater than max");
+                    else
+                        TBInput.Text = RandomText.RandomTextGenerate(TBParam.Text, Convert.ToInt32(RegexMinRandomLength.Value), Convert.ToInt32(RegexMaxRandomLength.Value));
+                    changedProgrammatically = true;
+
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "Regex check")
+                {
+                    var regex = new System.Text.RegularExpressions.Regex(TBParam.Text); // Your regex here
+                    if (regex.IsMatch(TBInput.Text))
+                    {
+                        MessageBox.Show(TBInput.Text + " matched");
+                        //Console.WriteLine($"Generated string '{result}' matches the regex.");
+                    }
+                    else
+                    {
+                        MessageBox.Show(TBInput.Text + " doesn't match");
+                        //Console.WriteLine($"Generated string '{result}' does not match the regex.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("TODO");
+                }
+                if(actionInstantCopy)
+                    Clipboard.SetText(TBInput.Text.ToString());
             }
         }
 

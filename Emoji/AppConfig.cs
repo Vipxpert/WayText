@@ -14,5 +14,6 @@ namespace Emoji
         public int formHeight { get; set; }
         public string [] excludedFolderFromAll { get; set; }
         public int startTypeIndex { get; set; }
+        public bool actionInstantCopy { get; set; }
     }
 }

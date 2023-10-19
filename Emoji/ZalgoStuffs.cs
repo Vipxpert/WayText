@@ -25,9 +25,13 @@ namespace Emoji
                         originalText.Append(zalgoCharacters[randomZalgoCharIndex]);
                     }
                 }
+                return originalText.ToString();
             }
-            MessageBox.Show("Empty input");
-            return null;
+            else
+            {
+                MessageBox.Show("Empty input");
+                return null;
+            }
         }
     }
 }
