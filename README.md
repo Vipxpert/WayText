@@ -32,6 +32,8 @@ Use AppConfig.json to change settings:
 - dataDelimiter: For separate the elements in a txt file
 - maxNumberOfColumnVisible: As it said
 - startTypeIndex: Start from the nth type when opening the app up
+- actionInstantCopy: Copy at the same time you execute an action
+- path: path (current prefix means current directory). Default is current/Data/
 
 Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^v^)
 
