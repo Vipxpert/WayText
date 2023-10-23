@@ -6,7 +6,7 @@ Instantly find and copy important stuff
 CopyTool is an app that allows you to organize data that you need to copy-paste frequently as a routine by simply editing txt files on Windows
 It can be helpful for storing information that you can't remember or type out easily. For etc emoji, kaomoji, regex, phone number,...
 
-- Interface:
+Interface:
 + Press the default F1 hotkey to bring up or hide the app
 + Hover over an item to see a full preview of it
 + Click on the table's items to copy. You can drag and drop them to any text box. Right-click on them to copy and hide the app at the same time
@@ -14,7 +14,7 @@ It can be helpful for storing information that you can't remember or type out ea
 + Hold down the left mouse on any empty space to drag the app. Right-click on empty space to hide the app
 + Left-click "Directory" to open the data folder. Right-click to open the app's directory
 
-- Data:
+Data:
 + Data is stored in the same folder with the exe. In case being lost just click on the "Data folder" link on the app
 + Folders represent Types and Files represent Categories
 + You can add number prefixes to any of the files or folders to sort them. The number prefix will be ignored in the app, but remember to number them correctly with where it's being at 1b, 2a, 3c. Incorrectly 1b, 1c, 5d,.... Numbers at the middle of the file name won't be removed
