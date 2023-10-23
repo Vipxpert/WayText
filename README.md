@@ -6,37 +6,44 @@ Instantly find and copy important stuff
 CopyTool is an app that allows you to organize data that you need to copy-paste frequently as a routine by simply editing txt files on Windows
 It can be helpful for storing information that you can't remember or type out easily. For etc emoji, kaomoji, regex, phone number,...
 
-Run CopyTool.exe to override 2 shortcuts, F1 and Ctrl + Space for the app's feature. CopyToolGui.exe is the app UI
+- Interface:
++ Press the default F1 hotkey to bring up or hide the app
++ Hover over an item to see a full preview of it
++ Click on the table's items to copy. You can drag and drop them to any text box. Right-click on them to copy and hide the app at the same time
++ Click on the table's header to either expand or shrink items
++ Hold down the left mouse on any empty space to drag the app. Right-click on empty space to hide the app
++ Left-click "Directory" to open the data folder. Right-click to open the app's directory
 
-Right-click to close the app. Left-click to copy, you can drag and drop the table's contents.
+- Data:
++ Data is stored in the same folder with the exe. In case being lost just click on the "Data folder" link on the app
++ Folders represent Types and Files represent Categories
++ You can add number prefixes to any of the files or folders to sort them. The number prefix will be ignored in the app, but remember to number them correctly with where it's being at 1b, 2a, 3c. Incorrectly 1b, 1c, 5d,.... Numbers at the middle of the file name won't be removed
++ Table's contents are stored in .txt files. Take note that the elements inside the file are separated by "ㅤ" or say the \u3164 Hangul filler Unicode characters. It might look like " " (space) but it isn't. This'll avoid conflicting between data. You can always customise it.
++ Data grouping can be customized in AppSettings.json
++ Cipher.txt stores the data for simple encryption actions
++ Change DataPath.txt in the app directory to change data location. The default is "current/Data/". You can change it to anywhere else "C://ProgramFile/..."
 
-F1 is the hotkey to open the app. And no. There isn't any way to customize that. It's not a feature... yet. You might use AutoHotkey
-
-Notice: By default, the txt file uses "ㅤ" (Hangul filler) as a delimiter. Not " " (Space)
-
-To conveniently edit data, click Ctrl + Space (The hotkey is assigned when you run CopyTool.exe in the background). This will switch the spaceㅤbarㅤbehaviourㅤtoㅤtypeㅤthisㅤcharacterㅤ(HangulㅤFiller),ㅤwhichㅤisㅤusedㅤasㅤtheㅤdefaultㅤdelimiter (or just to prank friends).
-
-Folders work as types and files work as categories. You store categories in types
-
-For example, Emoji is a type, that includes sad, happy, and angry categories. You make a folder named Emoji that stores Sad.txt, Happy.txt,...
-
-Add a number before a file's names to sort them manually 1Method.txt, 2Class.txt,... The same goes for folders
-
-Cipher.txt affects Simple Cipher and Simple Decipher actions
+To conveniently edit data, run CtrlSpace.ahk with AutoHotkey then click Ctrl + Space. This will switch the space bar behaviourㅤtoㅤtypeㅤHangulㅤFiller,ㅤwhichㅤisㅤusedㅤasㅤtheㅤdefaultㅤdelimiter (or just to prank friends).
 
 Use AppConfig.json to change settings:
-
-- folderDelimiter: folderDelimiter will include only folders that include the delimiter
-- excludeFolderDelimiter: excludeDelimiter will exclude any folders that include the delimiter
-- excludedFolderFromAll: Specifically names the files that are excluded from the program when selecting all
-- dataDelimiter: For separate the elements in a txt file
-- maxNumberOfColumnVisible: As it said
-- startTypeIndex: Start from the nth type when opening the app up
-- actionInstantCopy: Copy at the same time you execute an action
-- path: path (current prefix means current directory). Default is current/Data/
++ startOnBoot: Whether to start the app on boot or not
++ hideOnBoot: Whether to show the app on boot or not
++ dataDelimiter: Character used to separate data elements in txt files
++ headerExpand: Whether to expand columns on startup
++ groupType: List groups
++ headerGroupExpand: Whether to expand groups' columns on start-up
++ excludedFolderFromGroup: Folders that are unlisted from groups (will always take effect)
++ includedFolderInGroup: Folders that are included in groups (don't take effect when empty)
++ startTypeIndex: Which type to start up with
++ maxNumberOfColumnVisible: Fit the view to these number of columns on the screen
++ formHeight: Doesn't work
++ actionInstantCopy: Whether to copy at the same time you execute an action
++ hotkey: Hotkey to trigger the app open. Search for Windows Virtual keycode to get the number.
++ folderDelimiter: Only folders that include this string will be listed
++ excludeFolderDelimiter: Unlist any folders that include this string
 
 Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^v^)
 
 (￣ω￣)p
 
-
+P/S: README.md on the website is always more up-to-date than the releases
