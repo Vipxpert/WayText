@@ -47,3 +47,4 @@ Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^
 (￣ω￣)p
 
 P/S: README.md on the website is always more up-to-date than the releases
+P/S 2: I'm sometimes too lazy to commit source code up-to-date. If you need it contacts me
