@@ -36,7 +36,7 @@ Use AppConfig.json to change settings:
 + includedFolderInGroup: Folders that are included in groups (don't take effect when empty)
 + startTypeIndex: Which type to start up with
 + maxNumberOfColumnVisible: Fit the view to these number of columns on the screen
-+ formHeight: Doesn't work
++ formHeight: Form height
 + actionInstantCopy: Whether to copy at the same time you execute an action
 + hotkey: Hotkey to trigger the app open. Search for Windows Virtual keycode to get the number.
 + folderDelimiter: Only folders that include this string will be listed
