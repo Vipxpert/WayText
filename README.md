@@ -1,7 +1,7 @@
 # CopyTool
 Instantly find and copy important stuff
 
-![Screenshot 2023-10-17 231817](https://github.com/Vipxpert/CopyTool/assets/68524186/63479662-9703-414a-8bf3-21b91fb04189)
+![image](https://github.com/Vipxpert/CopyTool/assets/68524186/e57e41b9-1bc0-4494-98e0-cca1d6ef959d)
 
 CopyTool is an app that allows you to organize data that you need to copy-paste frequently as a routine by simply editing txt files on Windows
 It can be helpful for storing information that you can't remember or type out easily. For etc emoji, kaomoji, regex, phone number,...
