@@ -15,7 +15,7 @@ Interface:
 + Left-click "Directory" to open the data folder. Right-click to open the app's directory
 
 Data:
-+ Data is stored in the same folder with the exe. In case being lost just click on the "Data folder" link on the app
++ Data is stored in the same folder with the exe. In case being lost just click on the "Directory" link on the app
 + Folders represent Types and Files represent Categories
 + You can add number prefixes to any of the files or folders to sort them. The number prefix will be ignored in the app, but remember to number them correctly with where it's being at 1b, 2a, 3c. Incorrectly 1b, 1c, 5d,.... Numbers at the middle of the file name won't be removed
 + Table's contents are stored in .txt files. Take note that the elements inside the file are separated by "ㅤ" or say the \u3164 Hangul filler Unicode characters. It might look like " " (space) but it isn't. This'll avoid conflicting between data. You can always customise it.
