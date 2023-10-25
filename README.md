@@ -48,3 +48,6 @@ Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^
 
 P/S: README.md on the website is always more up-to-date than the releases
 P/S 2: I'm sometimes too lazy to commit source code up-to-date. If you need it contacts me
+P/S 3: This might be the last version. There're still features to add but it takes too much effort
+- Settings editting page
+- Drag and drop, edit contents right on the form
