@@ -38,7 +38,7 @@ Use AppConfig.json to change settings:
 + showHint: Turn hints on or off
 + startOnBoot: Whether to start the app on boot or not
 + hideOnBoot: Whether to show the app on boot or not
-+ formHeight: Form height
++ formHeight: App's height
 + maxNumberOfColumnVisible: Fit the view to the number of columns on the screen
 + actionInstantCopy: Whether to copy at the same time you execute an action
 
@@ -47,8 +47,8 @@ Use AppConfig.json to change settings:
 + headerExpand: Whether to expand columns on app start
 + groupType: List groups
 + headerGroupExpand: Whether to expand groups' columns on app start
-+ excludedFolderFromGroup: Folders that are unlisted from groups (will always take effect)
 + includedFolderInGroup: Folders that are included in groups (don't take effect when empty)
++ excludedFolderFromGroup: Folders that are unlisted from groups (will always take effect)
 + startTypeIndex: When open the app, select the type with this index by default (start from 0)
 + startCategoryIndex: When open the app, select the category with this index by default (start from 0)
 + folderDelimiter: Only folders that include this string will be listed
