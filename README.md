@@ -15,13 +15,12 @@ Interface:
 + Left-click "Directory" to open the data folder. Right-click to open the app's directory
 
 Data:
-+ Data is stored in the same folder with the exe. In case you are lost just click on the "Directory" link on the app
++ Data is stored locally on your machine (C:\\Users\*your user name*\WayText\). In case you are lost just click on the "Directory" link on the app
 + Folders represent Types and Files represent Categories
 + You can add number prefixes to any of the files or folders to sort them. The number prefix will be ignored in the app, but remember to number them correctly, or else it may cause bugs. For example 1b, 2a, 3c. Incorrectly 1b, 1c, 5d,... Numbers in the middle of the file name don't have any effects
 + Table's contents are stored in .txt files. Take note that the elements inside the file are separated by 2 downlines
 + Data grouping can be customized in AppSettings.json
 + Cipher.txt stores the data for simple encryption actions
-+ Data is stored locally on your machine
 
 Menu:
 + Run in CMD: Run contents of that cell in CMD
