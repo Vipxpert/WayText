@@ -51,6 +51,7 @@ Use AppConfig.json to change settings:
 + excludedFolderFromGroup: Folders that are unlisted from groups (will always take effect)
 + includedFolderInGroup: Folders that are included in groups (don't take effect when empty)
 + startTypeIndex: When open the app, select the type with this index by default (start from 0)
++ startCategoryIndex: When open the app, select the category with this index by default (start from 0)
 + folderDelimiter: Only folders that include this string will be listed
 + excludeFolderDelimiter: Folders that include this string will be unlisted
 + hotkey: Hotkey to trigger the app hide/show. Search for Windows Virtual keycode on Google to get the code.
