@@ -1,5 +1,5 @@
 # WayText
-Many ways to do with texts
+Many things to do with texts
 
 <img width="805" alt="image" src="https://github.com/Vipxpert/WayText/assets/68524186/f160c2f4-835a-41f2-a741-bf126adf629b">
 
@@ -45,14 +45,14 @@ Use AppConfig.json to change settings:
 
 - Advance:
 + dataDelimiter: Character used to separate data elements in txt files
-+ headerExpand: Whether to expand columns on startup
++ headerExpand: Whether to expand columns on app start
 + groupType: List groups
-+ headerGroupExpand: Whether to expand groups' columns on start-up
++ headerGroupExpand: Whether to expand groups' columns on app start
 + excludedFolderFromGroup: Folders that are unlisted from groups (will always take effect)
 + includedFolderInGroup: Folders that are included in groups (don't take effect when empty)
-+ startTypeIndex: Which type to start up with (start from 0)
++ startTypeIndex: When open the app, select the type with this index by default (start from 0)
 + folderDelimiter: Only folders that include this string will be listed
-+ excludeFolderDelimiter: Unlist any folders that include this string
++ excludeFolderDelimiter: Folders that include this string will be unlisted
 + hotkey: Hotkey to trigger the app hide/show. Search for Windows Virtual keycode on Google to get the code.
 
 Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^v^)
