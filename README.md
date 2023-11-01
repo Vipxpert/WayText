@@ -1,9 +1,8 @@
 # WayText
-
-<img width="805" alt="image" src="https://github.com/Vipxpert/WayText/assets/68524186/f160c2f4-835a-41f2-a741-bf126adf629b">
-
 WayText is an app that allows you to organize texts that you need to copy-paste frequently as a routine by simply editing .txt files on Windows
 It can be helpful for storing information that you can't remember or type out easily like emoji, kaomoji, regex, phone number, cmd commands,...
+
+<img width="805" alt="image" src="https://github.com/Vipxpert/WayText/assets/68524186/f160c2f4-835a-41f2-a741-bf126adf629b">
 
 Interface:
 + Press the default F1 hotkey to bring up or hide the app
