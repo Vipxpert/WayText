@@ -1,5 +1,4 @@
 # WayText
-Many things to do with texts
 
 <img width="805" alt="image" src="https://github.com/Vipxpert/WayText/assets/68524186/f160c2f4-835a-41f2-a741-bf126adf629b">
 
