@@ -31,7 +31,7 @@ Menu:
 + Exit: Exit/Close the app
 
 The blue links at the bottom left:
-+ I can't be clearer with the hints being shown when you hover over them
++ I can't be clearer with the hints being shown when you hover the mouse over them
 
 Use AppConfig.json to change settings:
 - Basic:
