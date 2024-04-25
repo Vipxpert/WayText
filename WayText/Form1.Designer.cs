@@ -63,9 +63,12 @@
             openDataFileToolStripMenuItem = new ToolStripMenuItem();
             openDataFolderToolStripMenuItem = new ToolStripMenuItem();
             openSettingsToolStripMenuItem = new ToolStripMenuItem();
-            hideToolStripMenuItem = new ToolStripMenuItem();
+            refreshToolStripMenuItem = new ToolStripMenuItem();
             restartAppToolStripMenuItem = new ToolStripMenuItem();
+            hideToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem1 = new ToolStripMenuItem();
+            BTLeftScroll = new Button();
+            BTRightScoll = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ZalgoIntensity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)RegexMinRandomLength).BeginInit();
@@ -299,7 +302,7 @@
             // 
             // panel1
             // 
-            panel1.AutoScroll = true;
+            panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel1.Controls.Add(TBReplace);
             panel1.Controls.Add(TBParam);
             panel1.Controls.Add(TBInput);
@@ -441,9 +444,9 @@
             // contextMenuStrip2
             // 
             contextMenuStrip2.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip2.Items.AddRange(new ToolStripItem[] { runInCMDToolStripMenuItem, openDataFileToolStripMenuItem, openDataFolderToolStripMenuItem, openSettingsToolStripMenuItem, hideToolStripMenuItem, restartAppToolStripMenuItem, exitToolStripMenuItem1 });
+            contextMenuStrip2.Items.AddRange(new ToolStripItem[] { runInCMDToolStripMenuItem, openDataFileToolStripMenuItem, openDataFolderToolStripMenuItem, openSettingsToolStripMenuItem, refreshToolStripMenuItem, restartAppToolStripMenuItem, hideToolStripMenuItem, exitToolStripMenuItem1 });
             contextMenuStrip2.Name = "contextMenuStrip2";
-            contextMenuStrip2.Size = new Size(221, 228);
+            contextMenuStrip2.Size = new Size(221, 260);
             // 
             // runInCMDToolStripMenuItem
             // 
@@ -451,6 +454,7 @@
             runInCMDToolStripMenuItem.Size = new Size(220, 32);
             runInCMDToolStripMenuItem.Text = "Run in CMD";
             runInCMDToolStripMenuItem.Click += runInCMDToolStripMenuItem_Click;
+            runInCMDToolStripMenuItem.MouseDown += runInCMDToolStripMenuItem_MouseDown;
             // 
             // openDataFileToolStripMenuItem
             // 
@@ -473,26 +477,57 @@
             openSettingsToolStripMenuItem.Text = "Settings";
             openSettingsToolStripMenuItem.Click += openSettingsToolStripMenuItem_Click;
             // 
-            // hideToolStripMenuItem
+            // refreshToolStripMenuItem
             // 
-            hideToolStripMenuItem.Name = "hideToolStripMenuItem";
-            hideToolStripMenuItem.Size = new Size(220, 32);
-            hideToolStripMenuItem.Text = "Hide";
-            hideToolStripMenuItem.Click += hideToolStripMenuItem_Click;
+            refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            refreshToolStripMenuItem.Size = new Size(220, 32);
+            refreshToolStripMenuItem.Text = "Refresh";
+            refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
             // restartAppToolStripMenuItem
             // 
             restartAppToolStripMenuItem.Name = "restartAppToolStripMenuItem";
             restartAppToolStripMenuItem.Size = new Size(220, 32);
-            restartAppToolStripMenuItem.Text = "Restart";
+            restartAppToolStripMenuItem.Text = "Restart app";
             restartAppToolStripMenuItem.Click += restartAppToolStripMenuItem_Click;
+            // 
+            // hideToolStripMenuItem
+            // 
+            hideToolStripMenuItem.Name = "hideToolStripMenuItem";
+            hideToolStripMenuItem.Size = new Size(220, 32);
+            hideToolStripMenuItem.Text = "Hide app";
+            hideToolStripMenuItem.Click += hideToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem1
             // 
             exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
             exitToolStripMenuItem1.Size = new Size(220, 32);
-            exitToolStripMenuItem1.Text = "Exit";
+            exitToolStripMenuItem1.Text = "Exit app";
             exitToolStripMenuItem1.Click += exitToolStripMenuItem1_Click;
+            // 
+            // BTLeftScroll
+            // 
+            BTLeftScroll.Location = new Point(362, 471);
+            BTLeftScroll.Name = "BTLeftScroll";
+            BTLeftScroll.Size = new Size(28, 34);
+            BTLeftScroll.TabIndex = 4;
+            BTLeftScroll.Text = "<";
+            BTLeftScroll.UseVisualStyleBackColor = true;
+            BTLeftScroll.Click += BTLeftScroll_Click;
+            BTLeftScroll.MouseClick += BTLeftScroll_MouseClick;
+            BTLeftScroll.MouseDown += BTLeftScroll_MouseDown;
+            // 
+            // BTRightScoll
+            // 
+            BTRightScoll.Location = new Point(396, 471);
+            BTRightScoll.Name = "BTRightScoll";
+            BTRightScoll.Size = new Size(27, 34);
+            BTRightScoll.TabIndex = 5;
+            BTRightScoll.Text = ">";
+            BTRightScoll.UseVisualStyleBackColor = true;
+            BTRightScoll.Click += BTRightScoll_Click;
+            BTRightScoll.MouseClick += BTRightScoll_MouseClick;
+            BTRightScoll.MouseDown += BTRightScoll_MouseDown;
             // 
             // Form1
             // 
@@ -502,6 +537,8 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(549, 545);
             ControlBox = false;
+            Controls.Add(BTRightScoll);
+            Controls.Add(BTLeftScroll);
             Controls.Add(panel1);
             Controls.Add(dataGridView1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -562,5 +599,8 @@
         private LinkLabel LLManual;
         private TextBox TBReplace;
         private Button BTRevert;
+        private ToolStripMenuItem refreshToolStripMenuItem;
+        private Button BTLeftScroll;
+        private Button BTRightScoll;
     }
 }

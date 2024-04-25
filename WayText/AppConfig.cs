@@ -21,5 +21,6 @@ namespace Emoji
         public bool actionInstantCopy { get; set; }
         public string path { get; set; }
         public string [] hotkey { get; set; }
+        public int numberOfScroll { get; set; }
     }
 }

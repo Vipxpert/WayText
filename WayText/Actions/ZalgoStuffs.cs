@@ -47,7 +47,7 @@ namespace Emoji
             }
             else
             {
-                MessageBox.Show("Empty input");
+                //MessageBox.Show("Empty input");
                 return null;
             }
         }

@@ -8,6 +8,7 @@ namespace Emoji
         static string[][] reversedDirectionalEmoji = new string[][] { new string[] { "👈", "\u0001" }, new string[] { "👉", "\u0002" } };
         static Dictionary<string, string> upsideDownMap = new Dictionary<string, string>
     {
+            {"\n", "\n"},
         {"a", "ɐ"},
     {"b", "q"},
     {"c", "ɔ"},
@@ -209,6 +210,7 @@ namespace Emoji
 
         static Dictionary<string, string> mirrorMap = new Dictionary<string, string>
 {
+            {"\n", "\n"},
     {"a", "ɒ"},
     {"b", "d"},
     {"c", "ɔ"},
@@ -300,8 +302,12 @@ namespace Emoji
     {"᚛", "᚜" },
     {"⌈", "⌉" },
 { "╭", "╮" },
+{ "ᕙ", "ᕗ" },
+{ "⇀", "↼" },
+{ "Ƹ", "Ʒ" },
     { "⌊", "⌋" },
     {"┌", "┐"},
+    {"⌐", "¬"},
     {"└", "┘" },
          /*{"👉", "👈" },
          {"👈", "👉" },*/

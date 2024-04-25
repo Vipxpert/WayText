@@ -6,6 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PackageIcon></PackageIcon>
+    <ApplicationIcon>bin\Release\net6.0-windows\thinking-face.512x506.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Release\net6.0-windows\thinking-face.512x506.ico" />
+  </ItemGroup>
 
 </Project>

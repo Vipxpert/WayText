@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using CopyToolGUI.Actions;
 using System.ComponentModel;
+using WayTextGUI.Actions;
 
 namespace Emoji
 {
@@ -74,7 +75,7 @@ namespace Emoji
         }
 
         //Configㅤfields
-        int i = 0, j = 0, numberOfColumn = 0, maxNumberOfColumnVisible = 5, formHeight = 371, startTypeIndex = 0, startCategoryIndex = 0;
+        int i = 0, j = 0, numberOfColumn = 0, maxNumberOfColumnVisible = 5, formHeight = 371, startTypeIndex = 0, startCategoryIndex = 0, numberOfScroll = 0;
         string[] hotkey = { "0x0000", "0x70" };
         bool actionInstantCopy, startOnBoot = true, startedAtBoot, hideOnBoot, showHint;
         bool[] headerGroupExpand; bool headerExpand = true; //Header expand feature
@@ -104,7 +105,15 @@ namespace Emoji
             {
                 if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\WayText\\"))
                 {
-                    Process.Start("explorer.exe", path);
+                    try
+                    {
+                        Process.Start("explorer.exe", path);
+                    }
+                    catch(Exception E)
+                    {
+                        MessageBox.Show(E.Message + "Couldn't open with explorer.exe, trying files.exe instead");
+                        Process.Start("files.exe", path);
+                    }
                 }
                 else
                 {
@@ -126,7 +135,7 @@ namespace Emoji
             }
             else if (e.Button == MouseButtons.Right)
             {
-                Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory);
+                    Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory);
             }
         }
 
@@ -164,6 +173,7 @@ namespace Emoji
                     startTypeIndex = config.startTypeIndex;
                     actionInstantCopy = config.actionInstantCopy;
                     hotkey = config.hotkey;
+                    numberOfScroll = config.numberOfScroll;
 
                 }
                 catch
@@ -284,6 +294,8 @@ namespace Emoji
         System.Windows.Forms.ToolTip TTNZalgo = new System.Windows.Forms.ToolTip();
         System.Windows.Forms.ToolTip TTNMinRandom = new System.Windows.Forms.ToolTip();
         System.Windows.Forms.ToolTip TTNMaxRandom = new System.Windows.Forms.ToolTip();
+        System.Windows.Forms.ToolTip TTBTRightScroll = new System.Windows.Forms.ToolTip();
+        System.Windows.Forms.ToolTip TTBTLeftScroll = new System.Windows.Forms.ToolTip();
         private void Form1_Load(object sender, EventArgs e)
         {
             //Get cursor position
@@ -433,6 +445,20 @@ namespace Emoji
                 TTNMaxRandom.InitialDelay = 200;
                 TTNMaxRandom.ReshowDelay = 5000;
                 TTNMaxRandom.SetToolTip(RegexMaxRandomLength, "Maximum length of randomly generated text");
+
+                TTBTLeftScroll.ToolTipTitle = "Hint";
+                TTBTLeftScroll.ShowAlways = false;
+                TTBTLeftScroll.AutoPopDelay = 3000;
+                TTBTLeftScroll.InitialDelay = 200;
+                TTBTLeftScroll.ReshowDelay = 5000;
+                TTBTLeftScroll.SetToolTip(BTLeftScroll, "Left-click to scroll left\nRight-click to jump to the beginning");
+
+                TTBTRightScroll.ToolTipTitle = "Hint";
+                TTBTRightScroll.ShowAlways = false;
+                TTBTRightScroll.AutoPopDelay = 3000;
+                TTBTRightScroll.InitialDelay = 200;
+                TTBTRightScroll.ReshowDelay = 5000;
+                TTBTRightScroll.SetToolTip(BTRightScoll, "Left-click to scroll right\nRight-click to jump to the last");
             }
 
             //Form drag events
@@ -477,7 +503,7 @@ namespace Emoji
             }
 
             //Prepare string actions
-            string[] textAction = { "Z̷̤̣̲ͮͤ͜ą̲̬̲̪̠ͮļ̞̯̺ͧ͞͡g̷̶̴̴̟ͥͫo̯̱ͪͭͩ͜͞f̡̢̤̤̞ͨ͜y̵̜̲̬̞̱͡","UnZalgofy", "uʍop ǝpısd∩", "Downside up","ɿoɿɿiM","Unmirror", "esreveR",
+            string[] textAction = { "Z̷̤̣̲ͮͤ͜ą̲̬̲̪̠ͮļ̞̯̺ͧ͞͡g̷̶̴̴̟ͥͫo̯̱ͪͭͩ͜͞f̡̢̤̤̞ͨ͜y̵̜̲̬̞̱͡","UnZalgofy", "s̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶", "uʍop ǝpısd∩", "Downside up","ɿoɿɿiM","Unmirror", "esreveR",
                 "raNDomly CApItAlizE", "TO UPPER CASE", "to lower case", "To Title Case", "Trim chrcter", "Trim string", "Trim duplcates","Replace",
                 "Simple cipher", "Simple decipher", "Regex check", "Random text generator",
                 "-- --- .-. ... .   -.-. --- -.. .   . -. -.-. .-. -.-- .--. -", "Morse code decrypt",
@@ -507,6 +533,8 @@ namespace Emoji
             label3.Top += formHeight / 2;
             RegexMaxRandomLength.Top += formHeight / 2;
             RegexMinRandomLength.Top += formHeight / 2;
+            BTLeftScroll.Top += formHeight;
+            BTRightScoll.Top += formHeight;
 
             TBInput.GotFocus += TBInput_GotFocus;
             TBInput.LostFocus += TBInput_LostFocus;
@@ -873,9 +901,7 @@ namespace Emoji
                     if (numberOfColumn > maxNumberOfColumnVisible)
                         dataGridView1.Width = (numberOfColumn - 1 < 0 ? 0 : dataGridView1.Columns[numberOfColumn - 1].Width) * maxNumberOfColumnVisible + 25;
                     else
-                    {
                         dataGridView1.Width = (numberOfColumn - 1 < 0 ? 0 : dataGridView1.Columns[numberOfColumn - 1].Width) * (numberOfColumn) + 25;
-                    }
 
                 }
                 else
@@ -919,6 +945,7 @@ namespace Emoji
                         dataGridView1.Width = (numberOfColumn - 1 < 0 ? 0 : dataGridView1.Columns[numberOfColumn - 1].Width) * maxNumberOfColumnVisible + 25;
                     else
                         dataGridView1.Width = (numberOfColumn - 1 < 0 ? 0 : dataGridView1.Columns[numberOfColumn - 1].Width) * (numberOfColumn) + 25;
+
                 }
             }
             else if (!groupType.Contains(type) && category == "All")
@@ -1024,6 +1051,20 @@ namespace Emoji
             {
                 MessageBox.Show("Wtf");
             }
+            if (dataGridView1.FirstDisplayedScrollingColumnIndex < dataGridView1.ColumnCount - 1 || dataGridView1.FirstDisplayedScrollingColumnIndex < dataGridView1.ColumnCount - 1)
+            {
+                //BTRightScoll.Location = new Point(dataGridView1.Location.X + dataGridView1.Width - 35 - BTRightScoll.Width, BTRightScoll.Location.Y);
+                BTRightScoll.Location = new Point(BTRightScoll.Location.X, BTRightScoll.Location.Y);
+                //BTLeftScroll.Location = new Point(BTLeftScroll.Location.X + dataGridView1.Width - (numberOfColumn - 1 < 0 ? 0 : dataGridView1.Columns[numberOfColumn - 1].Width) * 3, BTLeftScroll.Location.Y);
+                BTRightScoll.Show();
+                BTLeftScroll.Show();
+
+            }
+            else
+            {
+                BTRightScoll.Hide();
+                BTLeftScroll.Hide();
+            }
         }
         //Seventh
         public string[] NewColumn(string type, string folder, string file = "")
@@ -1115,6 +1156,18 @@ namespace Emoji
                 RegexMinRandomLength.Visible = false;
                 ZalgoIntensity.Visible = true;
                 label3.Visible = true;
+                TBReplace.Visible = false;
+                TBParam.PlaceholderText = "Parameter";
+            }
+            else if (CBTextAction.SelectedItem.ToString() == "s̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶")
+            {
+                TBParam.Visible = false;
+                LBParamCount.Visible = false;
+                LBRandom.Visible = false;
+                RegexMaxRandomLength.Visible = false;
+                RegexMinRandomLength.Visible = false;
+                ZalgoIntensity.Visible = false;
+                label3.Visible = false;
                 TBReplace.Visible = false;
                 TBParam.PlaceholderText = "Parameter";
             }
@@ -1265,14 +1318,16 @@ namespace Emoji
                         ZalgoIntensity.Value = 50;
                     unoriginalText = ZalgoStuffs.ZalgoFyText(originalText, ZalgoIntensity.Value);
                     TBInput.Text = unoriginalText;
-
-
-
                 }
                 else if (CBTextAction.SelectedItem.ToString() == "UnZalgofy")
                 {
                     changedProgrammatically = true;
                     TBInput.Text = ZalgoStuffs.UnzalgoFyText(originalText);
+                }
+                else if (CBTextAction.SelectedItem.ToString() == "s̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶")
+                {
+                    changedProgrammatically = true;
+                    TBInput.Text = StrikeThrough.ApplyStrikethrough(originalText);
                 }
                 else if (CBTextAction.SelectedItem.ToString() == "uʍop ǝpısd∩")
                 {
@@ -1785,20 +1840,38 @@ namespace Emoji
         static BackgroundWorker worker;
         private void runInCMDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataGridViewCell selectedCell = dataGridView1.CurrentCell;
-            if (selectedCell != null && dataGridView1 != null && dataGridView1.SelectedCells.Count > 0 && dataGridView1.SelectedCells[0].Value != null)
+
+
+        }
+
+        private void runInCMDToolStripMenuItem_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
             {
-                string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                string cmdContent = selectedCell.Value.ToString();
-                if (!string.IsNullOrEmpty(cmdContent))
+                DataGridViewCell selectedCell = dataGridView1.CurrentCell;
+                if (selectedCell != null && dataGridView1 != null && dataGridView1.SelectedCells.Count > 0 && dataGridView1.SelectedCells[0].Value != null)
                 {
-                    worker = new BackgroundWorker();
-                    worker.DoWork += RunCmd;
-                    worker.RunWorkerCompleted += CmdFinished;
-                    worker.RunWorkerAsync("cd " + userPath + "\n" + cmdContent);
+                    string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    string cmdContent = selectedCell.Value.ToString();
+                    if (!string.IsNullOrEmpty(cmdContent))
+                    {
+                        worker = new BackgroundWorker();
+                        worker.DoWork += RunCmd;
+                        //worker.RunWorkerCompleted += CmdFinished;
+                        worker.RunWorkerAsync("cd " + userPath + "\n" + cmdContent);
+                    }
+                }
+                else
+                {
+                    Process.Start("cmd.exe");
                 }
             }
+            else if (e.Button == MouseButtons.Right)
+            {
+                Process.Start("cmd.exe");
+            }
         }
+
         static void RunCmd(object sender, DoWorkEventArgs e)
         {
             string cmdText = (string)e.Argument;
@@ -1806,11 +1879,10 @@ namespace Emoji
             Process cmdProcess = new Process();
             cmdProcess.StartInfo.FileName = "cmd.exe";
             cmdProcess.StartInfo.RedirectStandardInput = true;
-            cmdProcess.StartInfo.RedirectStandardOutput = true;
+            cmdProcess.StartInfo.RedirectStandardOutput = false;
             cmdProcess.StartInfo.CreateNoWindow = false;
             cmdProcess.StartInfo.UseShellExecute = false;
             cmdProcess.Start();
-
             cmdProcess.StandardInput.WriteLine(cmdText);
             //cmdProcess.StandardInput.WriteLine("exit");
 
@@ -1818,11 +1890,18 @@ namespace Emoji
             cmdProcess.WaitForExit();
         }
 
-        static void CmdFinished(object sender, RunWorkerCompletedEventArgs e)
+        public void CmdFinished(object sender, RunWorkerCompletedEventArgs e)
         {
-            string outputStr = (string)e.Result;
+            try
+            {
+                changedProgrammatically = true;
+                string outputStr = (string)e.Result;
+                TBInput.Text = outputStr;
+            }
+            catch
+            {
 
-            System.Console.WriteLine(outputStr);
+            }
         }
 
         string[] currentColPath;
@@ -1833,7 +1912,14 @@ namespace Emoji
             {
                 try
                 {
-                    Process.Start("explorer.exe", path + folderNames[types.IndexOf(CBTypes.SelectedItem.ToString())] + "\\" + fileNames[categories.IndexOf(currentColPath[0])] + ".txt");
+                    try
+                    {
+                        Process.Start("explorer.exe", path + folderNames[types.IndexOf(CBTypes.SelectedItem.ToString())] + "\\" + fileNames[categories.IndexOf(currentColPath[0])] + ".txt");
+                    }
+                    catch
+                    {
+                        Process.Start("files.exe", path + folderNames[types.IndexOf(CBTypes.SelectedItem.ToString())] + "\\" + fileNames[categories.IndexOf(currentColPath[0])] + ".txt");
+                    }
                 }
                 catch
                 {
@@ -1846,7 +1932,15 @@ namespace Emoji
                 {
                     try
                     {
-                        Process.Start("explorer.exe", path + folderNames[types.IndexOf(currentColPath[0])] + "\\" + fileNames[categories.IndexOf(currentColPath[1])] + ".txt");
+                        try
+                        {
+                            Process.Start("explorer.exe", path + folderNames[types.IndexOf(currentColPath[0])] + "\\" + fileNames[categories.IndexOf(currentColPath[1])] + ".txt");
+
+                        }
+                        catch
+                        {
+                            Process.Start("files.exe", path + folderNames[types.IndexOf(currentColPath[0])] + "\\" + fileNames[categories.IndexOf(currentColPath[1])] + ".txt");
+                        }
                     }
                     catch
                     {
@@ -1863,7 +1957,15 @@ namespace Emoji
             {
                 try
                 {
-                    Process.Start("explorer.exe", path + folderNames[types.IndexOf(CBTypes.SelectedItem.ToString())]);
+                    try
+                    {
+                        Process.Start("explorer.exe", path + folderNames[types.IndexOf(CBTypes.SelectedItem.ToString())]);
+
+                    }
+                    catch
+                    {
+                        Process.Start("files.exe", path + folderNames[types.IndexOf(CBTypes.SelectedItem.ToString())]);
+                    }
                 }
                 catch
                 {
@@ -1876,7 +1978,16 @@ namespace Emoji
                 {
                     try
                     {
-                        Process.Start("explorer.exe", path + folderNames[types.IndexOf(currentColPath[0])]);
+                        try
+                        {
+                            Process.Start("explorer.exe", path + folderNames[types.IndexOf(currentColPath[0])]);
+
+                        }
+                        catch
+                        {
+                            Process.Start("files.exe", path + folderNames[types.IndexOf(currentColPath[0])]);
+
+                        }
                     }
                     catch
                     {
@@ -1907,17 +2018,44 @@ namespace Emoji
 
         private void openSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", path + "AppConfig.json");
+            try
+            {
+                Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\WayText\\" + "AppConfig.json");
+
+            }
+            catch
+            {
+                Process.Start("files.exe", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\WayText\\" + "AppConfig.json");
+
+            }
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", path + "AppConfig.json");
+            try
+            {
+                Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\WayText\\" + "AppConfig.json");
+
+            }
+            catch
+            {
+                Process.Start("files.exe", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\WayText\\" + "AppConfig.json");
+
+            }
         }
 
         private void LLManual_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory + "README.md");
+            try
+            {
+                Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory + "README.md");
+
+            }
+            catch
+            {
+                Process.Start("files.exe", AppDomain.CurrentDomain.BaseDirectory + "README.md");
+
+            }
         }
 
         private void TBInput_KeyPress(object sender, KeyPressEventArgs e)
@@ -2098,7 +2236,7 @@ namespace Emoji
                 TTInput.Show(" " + TBInput.Text.Length.ToString() + " characters\n " + words.Length + " words\n" + TBInput.Text, TBInput, toolTipX, toolTipY);
             else
                 TTInput.Show("Output and input to be processed are here\nHover while typing to show contents", TBInput, toolTipX, toolTipY);*/
-            this.ActiveControl = null;
+            //this.ActiveControl = null;
             if (!tbinputExpand)
             {
                 TBInput.Size = new System.Drawing.Size(300, 108);
@@ -2207,6 +2345,66 @@ namespace Emoji
             {
                 TryClipboard(TBInput.Text);
             }
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InjectCBDatagridview();
+        }
+
+        private void reloadDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InitCBTypes();
+        }
+
+
+        private void BTLeftScroll_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BTRightScoll_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BTLeftScroll_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void BTRightScoll_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void BTLeftScroll_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (dataGridView1.FirstDisplayedScrollingColumnIndex > 0)
+                    try
+                    {
+                        dataGridView1.FirstDisplayedScrollingColumnIndex -= numberOfScroll;
+                    }
+                    catch { dataGridView1.FirstDisplayedScrollingColumnIndex -= dataGridView1.FirstDisplayedScrollingColumnIndex; }
+            }
+            else
+                dataGridView1.FirstDisplayedScrollingColumnIndex -= dataGridView1.FirstDisplayedScrollingColumnIndex;
+        }
+
+        private void BTRightScoll_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (dataGridView1.FirstDisplayedScrollingColumnIndex < dataGridView1.ColumnCount - 1)
+                    try
+                    {
+                        dataGridView1.FirstDisplayedScrollingColumnIndex += numberOfScroll;
+                    }
+                    catch { dataGridView1.FirstDisplayedScrollingColumnIndex += numberOfColumn - maxNumberOfColumnVisible; }
+            }
+            else { dataGridView1.FirstDisplayedScrollingColumnIndex += numberOfColumn - maxNumberOfColumnVisible; }
         }
     }
 }
