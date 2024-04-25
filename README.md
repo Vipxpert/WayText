@@ -1,7 +1,7 @@
-# WayText - Quick access important texts
+# WayText - Quick access to important texts
 
 WayText is an app that allows you to organize texts that you need to copy-paste frequently as a routine by simply editing .txt files on Windows
-It can be helpful for storing information that you can't remember or type out easily like emoji, kaomoji, regex, phone number, cmd commands,...
+It can help store information that you can't remember or type out easily like emoji, kaomoji, regex, phone number, cmd commands,...
 
 ![image](https://github.com/Vipxpert/WayText/assets/68524186/bfc34470-e066-4617-92b6-793c1fee3577)
 
