@@ -1,4 +1,4 @@
-# WayText
+# WayText. My important daily driver that enhances work flows
 
 WayText is an app that allows you to organize texts that you need to copy-paste frequently as a routine by simply editing .txt files on Windows
 It can be helpful for storing information that you can't remember or type out easily like emoji, kaomoji, regex, phone number, cmd commands,...
