@@ -60,7 +60,7 @@ Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^
 (￣ω￣)p
 
 P/S: README.md on the website is always more up-to-date than the releases
-P/S 2: I'm sometimes too lazy to commit source code up-to-date. If you need it contact me
+P/S 2: If it gets buggy entering texts, it might be because you're writing in other language. Change it to English
 P/S 3: This might be the last version. There are still features to add but it takes too much effort
 - An installer
 - Settings editing page
