@@ -43,6 +43,18 @@ namespace Emoji
                         //notiCopyTool.ShowBalloonTip(2000);
                     }
                 }
+
+                int t, c;
+                for(int i = 0; i < hotkeyChangeTypeCategory.Length; i++)
+                {
+                    if (id == i + 2)
+                    {
+                        t = Convert.ToInt32(hotkeyChangeTypeCategory[i][0]);
+                        c = Convert.ToInt32(hotkeyChangeTypeCategory[i][1]);
+                        CBTypes.SelectedIndex = t;
+                        CBCategories.SelectedIndex = c;
+                    }
+                }
             }
             base.WndProc(ref m);
         }
@@ -76,7 +88,9 @@ namespace Emoji
 
         //Configㅤfields
         int i = 0, j = 0, numberOfColumn = 0, maxNumberOfColumnVisible = 5, formHeight = 371, startTypeIndex = 0, startCategoryIndex = 0, numberOfScroll = 0;
-        string[] hotkey = { "0x0000", "0x70" };
+        string[] hotkey = { "0x0000", "0x70" }; //Modfier + virtual key (nothing + F1)
+        //ctrl + 1, ctrl + 2
+        string[][] hotkeyChangeTypeCategory = { new string[] { "3", "0", "0x0002", "0x31" }, new string[] { "4", "0", "0x0002", "0x32" } }; 
         bool actionInstantCopy, startOnBoot = true, startedAtBoot, hideOnBoot, showHint;
         bool[] headerGroupExpand; bool headerExpand = true; //Header expand feature
         string[][] excludedFolderFromGroup, includedFolderInGroup; //Specify files's names that are excluded from the program
@@ -172,7 +186,8 @@ namespace Emoji
                     headerGroupExpand = config.headerGroupExpand;
                     startTypeIndex = config.startTypeIndex;
                     actionInstantCopy = config.actionInstantCopy;
-                    hotkey = config.hotkey;
+                    hotkey = config.hotkeyShowHideApp;
+                    hotkeyChangeTypeCategory = config.hotkeyChangeTypeCategory;
                     numberOfScroll = config.numberOfScroll;
 
                 }
@@ -207,7 +222,8 @@ namespace Emoji
                     startTypeIndex = config.startTypeIndex;
                     startCategoryIndex = config.startCategoryIndex;
                     actionInstantCopy = config.actionInstantCopy;
-                    hotkey = config.hotkey;
+                    hotkey = config.hotkeyShowHideApp;
+                    hotkeyChangeTypeCategory = config.hotkeyChangeTypeCategory;
                 }
                 else
                 {
@@ -478,6 +494,14 @@ namespace Emoji
             int key = Convert.ToInt32(hotkey[1].Substring(2), 16);
             RegisterHotKey(this.Handle, 1, modifier, key); // Register the hotkey
 
+            for(int i = 0; i < hotkeyChangeTypeCategory.Length; i++)
+            {
+                //MessageBox.Show(hotkeyChangeTypeCategory[i][2] + " " + hotkeyChangeTypeCategory[i][3]);
+                modifier = Convert.ToInt32(hotkeyChangeTypeCategory[i][2].Substring(2), 16);
+                key = Convert.ToInt32(hotkeyChangeTypeCategory[i][3].Substring(2), 16);
+                RegisterHotKey(this.Handle, i+2, modifier, key);
+            }
+
             InitCBTypes(); //Initializing data into controllers
 
             if (startedAtBoot)
@@ -709,7 +733,6 @@ namespace Emoji
             }
             else
             {
-
                 //InitCBCategories(folderNames[CBTypes.SelectedIndex - 1]);
                 string pattern = @"(\d+)([A-Za-z]+)";
                 string input = folderNames[CBTypes.SelectedIndex - groupType.Count];
@@ -1724,7 +1747,7 @@ namespace Emoji
 
         private void LLGit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string url = "\"https://github.com/Vipxpert/CopyTool\"";
+            string url = "\"https://github.com/Vipxpert/WayText\"";
             if (e.Button == MouseButtons.Left)
             {
                 try

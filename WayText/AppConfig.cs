@@ -20,7 +20,9 @@ namespace Emoji
         public int startCategoryIndex { get; set; }
         public bool actionInstantCopy { get; set; }
         public string path { get; set; }
-        public string [] hotkey { get; set; }
+        public string [] hotkeyShowHideApp { get; set; }
+        public string[][] hotkeyChangeTypeCategory { get; set; }
         public int numberOfScroll { get; set; }
+
     }
 }

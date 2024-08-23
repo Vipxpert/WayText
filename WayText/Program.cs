@@ -14,9 +14,9 @@ namespace Emoji
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            if (Process.GetProcessesByName("CopyToolGUI").Length > 1)
+            if (Process.GetProcessesByName("WayTextGUI").Length > 1)
             {
-                MessageBox.Show("There's another instance of CopyTool running on this computer. Close that one first then try again \n\n¯\\_(ツ)_/¯", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There's another instance of WayText running on this computer. Close that one first then try again \n\n¯\\_(ツ)_/¯", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //closing = true;
                 Application.Exit();
             }
