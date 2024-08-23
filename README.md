@@ -53,7 +53,8 @@ Use AppConfig.json to change settings:
 + startCategoryIndex: When opening the app, select the category with this index by default (start from 0)
 + folderDelimiter: Only folders that include this string will be listed
 + excludeFolderDelimiter: Folders that include this string will be unlisted
-+ hotkey: Hotkey to trigger the app hide/show. Search for Windows Virtual keycode on Google to get the code.
++ hotkeyShowHideApp: Hotkey to trigger the app hide/show. Search for Windows Virtual keycode on Google to get the code.
++ hotkeyChangeTypeCategory: Hotkey to change types and categories quickly
 
 Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^v^)
 
