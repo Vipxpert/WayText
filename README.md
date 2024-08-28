@@ -41,6 +41,8 @@ Use AppConfig.json to change settings:
 + formHeight: App's height
 + maxNumberOfColumnVisible: Fit the view to the number of columns on the screen
 + actionInstantCopy: Whether to copy at the same time you execute an action
++ numberOfScroll: How many rows to scroll each scrolling?
++ scrollInterval: How long between each scroll when hovering over?
 
 - Advance:
 + dataDelimiter: Character used to separate data elements in txt files
