@@ -23,6 +23,7 @@ namespace Emoji
         public string [] hotkeyShowHideApp { get; set; }
         public string[][] hotkeyChangeTypeCategory { get; set; }
         public int numberOfScroll { get; set; }
-
+        public int scrollInterval { get; set; }
+        
     }
 }

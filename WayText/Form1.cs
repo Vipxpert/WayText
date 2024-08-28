@@ -45,7 +45,7 @@ namespace Emoji
                 }
 
                 int t, c;
-                for(int i = 0; i < hotkeyChangeTypeCategory.Length; i++)
+                for (int i = 0; i < hotkeyChangeTypeCategory.Length; i++)
                 {
                     if (id == i + 2)
                     {
@@ -87,10 +87,10 @@ namespace Emoji
         }
 
         //Configㅤfields
-        int i = 0, j = 0, numberOfColumn = 0, maxNumberOfColumnVisible = 5, formHeight = 371, startTypeIndex = 0, startCategoryIndex = 0, numberOfScroll = 0;
+        int i = 0, j = 0, numberOfColumn = 0, maxNumberOfColumnVisible = 5, formHeight = 371, startTypeIndex = 0, startCategoryIndex = 0, numberOfScroll = 0, scrollInterval = 500;
         string[] hotkey = { "0x0000", "0x70" }; //Modfier + virtual key (nothing + F1)
         //ctrl + 1, ctrl + 2
-        string[][] hotkeyChangeTypeCategory = { new string[] { "3", "0", "0x0002", "0x31" }, new string[] { "4", "0", "0x0002", "0x32" } }; 
+        string[][] hotkeyChangeTypeCategory = { new string[] { "3", "0", "0x0002", "0x31" }, new string[] { "4", "0", "0x0002", "0x32" } };
         bool actionInstantCopy, startOnBoot = true, startedAtBoot, hideOnBoot, showHint;
         bool[] headerGroupExpand; bool headerExpand = true; //Header expand feature
         string[][] excludedFolderFromGroup, includedFolderInGroup; //Specify files's names that are excluded from the program
@@ -123,7 +123,7 @@ namespace Emoji
                     {
                         Process.Start("explorer.exe", path);
                     }
-                    catch(Exception E)
+                    catch (Exception E)
                     {
                         MessageBox.Show(E.Message + "Couldn't open with explorer.exe, trying files.exe instead");
                         Process.Start("files.exe", path);
@@ -149,7 +149,7 @@ namespace Emoji
             }
             else if (e.Button == MouseButtons.Right)
             {
-                    Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory);
+                Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory);
             }
         }
 
@@ -189,6 +189,7 @@ namespace Emoji
                     hotkey = config.hotkeyShowHideApp;
                     hotkeyChangeTypeCategory = config.hotkeyChangeTypeCategory;
                     numberOfScroll = config.numberOfScroll;
+                    scrollInterval = config.scrollInterval;
 
                 }
                 catch
@@ -245,8 +246,14 @@ namespace Emoji
 
 
             InitializeComponent();
+            scrollTimer = new System.Windows.Forms.Timer();
+            scrollTimer.Interval = scrollInterval; // 0.5 seconds
+            scrollTimer.Tick += ScrollTimer_Tick;
             DataPrepare();
         }
+        private System.Windows.Forms.Timer scrollTimer;
+        private bool scrollingLeft = false;
+        private bool scrollingRight = false;
 
         //Read folders and text files data into folderNames, fileNames, structure
         public void DataPrepare()
@@ -467,14 +474,14 @@ namespace Emoji
                 TTBTLeftScroll.AutoPopDelay = 3000;
                 TTBTLeftScroll.InitialDelay = 200;
                 TTBTLeftScroll.ReshowDelay = 5000;
-                TTBTLeftScroll.SetToolTip(BTLeftScroll, "Left-click to scroll left\nRight-click to jump to the beginning");
+                TTBTLeftScroll.SetToolTip(BTLeftScroll, "Hover over or left-click to scroll left\nRight-click to jump to the beginning");
 
                 TTBTRightScroll.ToolTipTitle = "Hint";
                 TTBTRightScroll.ShowAlways = false;
                 TTBTRightScroll.AutoPopDelay = 3000;
                 TTBTRightScroll.InitialDelay = 200;
                 TTBTRightScroll.ReshowDelay = 5000;
-                TTBTRightScroll.SetToolTip(BTRightScoll, "Left-click to scroll right\nRight-click to jump to the last");
+                TTBTRightScroll.SetToolTip(BTRightScoll, "Hover over or left-click to scroll right\nRight-click to jump to the last");
             }
 
             //Form drag events
@@ -494,12 +501,12 @@ namespace Emoji
             int key = Convert.ToInt32(hotkey[1].Substring(2), 16);
             RegisterHotKey(this.Handle, 1, modifier, key); // Register the hotkey
 
-            for(int i = 0; i < hotkeyChangeTypeCategory.Length; i++)
+            for (int i = 0; i < hotkeyChangeTypeCategory.Length; i++)
             {
                 //MessageBox.Show(hotkeyChangeTypeCategory[i][2] + " " + hotkeyChangeTypeCategory[i][3]);
                 modifier = Convert.ToInt32(hotkeyChangeTypeCategory[i][2].Substring(2), 16);
                 key = Convert.ToInt32(hotkeyChangeTypeCategory[i][3].Substring(2), 16);
-                RegisterHotKey(this.Handle, i+2, modifier, key);
+                RegisterHotKey(this.Handle, i + 2, modifier, key);
             }
 
             InitCBTypes(); //Initializing data into controllers
@@ -1076,7 +1083,7 @@ namespace Emoji
             }
             if (dataGridView1.FirstDisplayedScrollingColumnIndex < dataGridView1.ColumnCount - 1 || dataGridView1.FirstDisplayedScrollingColumnIndex < dataGridView1.ColumnCount - 1)
             {
-                //BTRightScoll.Location = new Point(dataGridView1.Location.X + dataGridView1.Width - 35 - BTRightScoll.Width, BTRightScoll.Location.Y);
+                BTRightScoll.Location = new Point(dataGridView1.Location.X + dataGridView1.Width - 35 - BTRightScoll.Width, BTRightScoll.Location.Y);
                 BTRightScoll.Location = new Point(BTRightScoll.Location.X, BTRightScoll.Location.Y);
                 //BTLeftScroll.Location = new Point(BTLeftScroll.Location.X + dataGridView1.Width - (numberOfColumn - 1 < 0 ? 0 : dataGridView1.Columns[numberOfColumn - 1].Width) * 3, BTLeftScroll.Location.Y);
                 BTRightScoll.Show();
@@ -2428,6 +2435,83 @@ namespace Emoji
                     catch { dataGridView1.FirstDisplayedScrollingColumnIndex += numberOfColumn - maxNumberOfColumnVisible; }
             }
             else { dataGridView1.FirstDisplayedScrollingColumnIndex += numberOfColumn - maxNumberOfColumnVisible; }
+        }
+
+        private void ScrollTimer_Tick(object sender, EventArgs e)
+        {
+            if (scrollingLeft)
+            {
+                ScrollLeft();
+            }
+            else if (scrollingRight)
+            {
+                ScrollRight();
+            }
+        }
+
+        private void ScrollLeft()
+        {
+            if (dataGridView1.FirstDisplayedScrollingColumnIndex > 0)
+            {
+                try
+                {
+                    dataGridView1.FirstDisplayedScrollingColumnIndex -= numberOfScroll;
+                }
+                catch
+                {
+                    dataGridView1.FirstDisplayedScrollingColumnIndex = 0;
+                }
+            }
+        }
+
+        private void ScrollRight()
+        {
+            if (dataGridView1.FirstDisplayedScrollingColumnIndex < dataGridView1.ColumnCount - 1)
+            {
+                try
+                {
+                    dataGridView1.FirstDisplayedScrollingColumnIndex += numberOfScroll;
+                }
+                catch
+                {
+                    dataGridView1.FirstDisplayedScrollingColumnIndex = dataGridView1.ColumnCount - 1;
+                }
+            }
+        }
+
+
+        private void BTLeftScroll_MouseHover(object sender, EventArgs e)
+        {
+            scrollingLeft = true;
+            scrollTimer.Start();
+        }
+
+        private void BTLeftScroll_MouseLeave(object sender, EventArgs e)
+        {
+            scrollingLeft = false;
+            scrollTimer.Stop();
+        }
+
+        private void BTRightScoll_MouseHover(object sender, EventArgs e)
+        {
+            scrollingRight = true;
+            scrollTimer.Start();
+        }
+
+        private void BTRightScoll_MouseLeave(object sender, EventArgs e)
+        {
+            scrollingRight = false;
+            scrollTimer.Stop();
+        }
+
+        private void BTLeftScroll_MouseEnter(object sender, EventArgs e)
+        {
+            ScrollLeft();
+        }
+
+        private void BTRightScoll_MouseEnter(object sender, EventArgs e)
+        {
+            ScrollRight();
         }
     }
 }

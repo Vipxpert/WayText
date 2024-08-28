@@ -516,6 +516,9 @@
             BTLeftScroll.Click += BTLeftScroll_Click;
             BTLeftScroll.MouseClick += BTLeftScroll_MouseClick;
             BTLeftScroll.MouseDown += BTLeftScroll_MouseDown;
+            BTLeftScroll.MouseEnter += BTLeftScroll_MouseEnter;
+            BTLeftScroll.MouseLeave += BTLeftScroll_MouseLeave;
+            BTLeftScroll.MouseHover += BTLeftScroll_MouseHover;
             // 
             // BTRightScoll
             // 
@@ -528,6 +531,9 @@
             BTRightScoll.Click += BTRightScoll_Click;
             BTRightScoll.MouseClick += BTRightScoll_MouseClick;
             BTRightScoll.MouseDown += BTRightScoll_MouseDown;
+            BTRightScoll.MouseEnter += BTRightScoll_MouseEnter;
+            BTRightScoll.MouseLeave += BTRightScoll_MouseLeave;
+            BTRightScoll.MouseHover += BTRightScoll_MouseHover;
             // 
             // Form1
             // 
