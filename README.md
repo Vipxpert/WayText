@@ -41,6 +41,8 @@ Use AppConfig.json to change settings:
 + formHeight: App's height
 + maxNumberOfColumnVisible: Fit the view to the number of columns on the screen
 + actionInstantCopy: Whether to copy at the same time you execute an action
++ numberOfScroll: How many rows to scroll each scrolling?
++ scrollInterval: How long between each scroll when hovering over?
 
 - Advance:
 + dataDelimiter: Character used to separate data elements in txt files
@@ -53,7 +55,8 @@ Use AppConfig.json to change settings:
 + startCategoryIndex: When opening the app, select the category with this index by default (start from 0)
 + folderDelimiter: Only folders that include this string will be listed
 + excludeFolderDelimiter: Folders that include this string will be unlisted
-+ hotkey: Hotkey to trigger the app hide/show. Search for Windows Virtual keycode on Google to get the code.
++ hotkeyShowHideApp: Hotkey to trigger the app hide/show. Search for Windows Virtual keycode on Google to get the code.
++ hotkeyChangeTypeCategory: Hotkey to change types and categories quickly
 
 Made with Visual Studio, AutoHotkey, love, and a college student's brains  (✿^v^)
 
