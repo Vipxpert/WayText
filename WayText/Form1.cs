@@ -830,7 +830,9 @@ namespace Emoji
 
                         if (Regex.IsMatch(input, pattern))
                         {
-                            InitDatagridView((CBTypes.SelectedIndex - groupType.Count + 1).ToString() + Trim.TrimCharacter(CBTypes.SelectedItem.ToString(), "0123456789"), CBCategories.SelectedItem.ToString());
+                            InitDatagridView(folderNames[CBTypes.SelectedIndex - groupType.Count], CBCategories.SelectedItem.ToString());
+
+                            //InitDatagridView(folderNames[CBTypes.SelectedIndex - groupType.Count], structure[CBTypes.SelectedIndex - groupType.Count][CBCategories.SelectedIndex - 1]);
                         }
                         else
                         {
@@ -856,7 +858,8 @@ namespace Emoji
                     }
                     else
                     {
-                        InitDatagridView(CBTypes.SelectedItem.ToString(), CBCategories.SelectedIndex.ToString() + Trim.TrimCharacter(CBCategories.SelectedItem.ToString(), "0123456789"));
+                        //InitDatagridView(CBTypes.SelectedItem.ToString(), CBCategories.SelectedIndex.ToString() + Trim.TrimCharacter(CBCategories.SelectedItem.ToString(), "0123456789"));
+                        InitDatagridView(CBTypes.SelectedItem.ToString(), structure[CBTypes.SelectedIndex - groupType.Count][CBCategories.SelectedIndex - 1]);
                     }
                 }
                 else
