@@ -805,6 +805,7 @@ namespace Emoji
         {
             InjectCBDatagridview();
         }
+
         //Fifth
         //Pass Combobox's values into Datagridview
         public void InjectCBDatagridview()
@@ -842,6 +843,7 @@ namespace Emoji
             {
                 string pattern = @"(\d+)([A-Za-z]+)";
                 string input = structure[CBTypes.SelectedIndex - groupType.Count][CBCategories.SelectedIndex - 1];
+
                 if (Regex.IsMatch(input, pattern))
                 {
                     //MessageBox.Show("meow " + input);
@@ -849,7 +851,8 @@ namespace Emoji
                     //MessageBox.Show("here " + input);
                     if (Regex.IsMatch(input, pattern))
                     {
-                        InitDatagridView((CBTypes.SelectedIndex - groupType.Count + 1).ToString() + Trim.TrimCharacter(CBTypes.SelectedItem.ToString(), "0123456789"), CBCategories.SelectedIndex.ToString() + Trim.TrimCharacter(CBCategories.SelectedItem.ToString(), "0123456789"));
+                        //InitDatagridView((CBTypes.SelectedIndex - groupType.Count + 1).ToString() + Trim.TrimCharacter(CBTypes.SelectedItem.ToString(), "0123456789"), CBCategories.SelectedIndex.ToString() + Trim.TrimCharacter(CBCategories.SelectedItem.ToString(), "0123456789"));
+                        InitDatagridView(folderNames[CBTypes.SelectedIndex - groupType.Count], structure[CBTypes.SelectedIndex - groupType.Count][CBCategories.SelectedIndex - 1]);
                     }
                     else
                     {
@@ -862,7 +865,8 @@ namespace Emoji
                     input = folderNames[CBTypes.SelectedIndex - groupType.Count];
                     if (Regex.IsMatch(input, pattern))
                     {
-                        InitDatagridView(CBTypes.SelectedIndex.ToString() + Trim.TrimCharacter(CBTypes.SelectedItem.ToString(), "0123456789"), CBCategories.SelectedItem.ToString());
+                        //InitDatagridView(CBTypes.SelectedIndex.ToString() + Trim.TrimCharacter(CBTypes.SelectedItem.ToString(), "0123456789"), CBCategories.SelectedItem.ToString());
+                        InitDatagridView(folderNames[CBTypes.SelectedIndex - groupType.Count], structure[CBTypes.SelectedIndex - groupType.Count][CBCategories.SelectedIndex - 1]);
                     }
                     else
                     {
@@ -932,12 +936,10 @@ namespace Emoji
                         dataGridView1.Width = (numberOfColumn - 1 < 0 ? 0 : dataGridView1.Columns[numberOfColumn - 1].Width) * maxNumberOfColumnVisible + 25;
                     else
                         dataGridView1.Width = (numberOfColumn - 1 < 0 ? 0 : dataGridView1.Columns[numberOfColumn - 1].Width) * (numberOfColumn) + 25;
-
                 }
                 else
                 {
                     List<string[]> list = new List<string[]>();
-
                     i = 0;
                     foreach (string folder in folderNames)
                     {
