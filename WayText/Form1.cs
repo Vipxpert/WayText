@@ -256,7 +256,7 @@ namespace Emoji
         private bool scrollingRight = false;
 
         //Read folders and text files data into folderNames, fileNames, structure
-        public void DataPrepare()
+        /*public void DataPrepare()
         {
             foreach (string folder in Directory.GetDirectories(path).Select(Path.GetFileName).ToArray())
             {
@@ -296,8 +296,62 @@ namespace Emoji
             }
 
             changedProgrammatically = false;
-            //this.ShowDialog();
+        }*/
+
+        public void DataPrepare()
+        {
+            // Read and filter folder names
+            foreach (string folder in Directory.GetDirectories(path).Select(Path.GetFileName))
+            {
+                if (!folder.Contains(excludeFolderDelimiter))
+                    folderNames.Add(folder);
+            }
+
+            // Remove folder delimiter if specified
+            if (!String.IsNullOrEmpty(folderDelimiter))
+            {
+                for (int i = 0; i < folderNames.Count; i++)
+                {
+                    folderNames[i] = folderNames[i].Replace(folderDelimiter, "");
+                }
+            }
+
+            // Sort folders by numeric prefix
+            folderNames = folderNames.OrderBy(f => ExtractNumericPrefix(f)).ToList();
+
+            // Add files from folders into the structure
+            structure.Clear();
+            foreach (string folder in folderNames)
+            {
+                var files = Directory.GetFiles(Path.Combine(path, folder), "*.txt")
+                                     .Select(Path.GetFileNameWithoutExtension)
+                                     .OrderBy(f => ExtractNumericPrefix(f))  // Sort files within each folder
+                                     .ToArray();
+                structure.Add(files);
+            }
+
+            // Store all file names in a list and sort them numerically
+            fileNames.Clear();
+            foreach (var folderFiles in structure)
+            {
+                fileNames.AddRange(folderFiles);
+            }
+            fileNames = fileNames.OrderBy(f => ExtractNumericPrefix(f)).ToList();
+
+            // Extract non-numeric part for categorization
+            types = folderNames.Select(f => Trim.TrimCharacter(f, "0123456789")).ToList();
+            categories = fileNames.Select(f => Trim.TrimCharacter(f, "0123456789")).ToList();
+
+            changedProgrammatically = false;
         }
+
+        // Helper method to extract numeric prefix
+        private int ExtractNumericPrefix(string name)
+        {
+            string numberPart = new string(name.TakeWhile(char.IsDigit).ToArray());
+            return int.TryParse(numberPart, out int num) ? num : int.MaxValue;
+        }
+
 
         //Preparing ToolTips
         System.Windows.Forms.ToolTip TTInput = new System.Windows.Forms.ToolTip();
