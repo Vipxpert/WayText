@@ -156,7 +156,8 @@ namespace Emoji
         public Form1(bool started)
         {
             startedAtBoot = started;
-            this.Icon = new Icon(AppDomain.CurrentDomain.BaseDirectory + "thinking-face.512x506.ico");
+            //this.Icon = new Icon(AppDomain.CurrentDomain.BaseDirectory + "thinking-face.512x506.ico");
+            this.Icon = new Icon(AppDomain.CurrentDomain.BaseDirectory + "Vipx95.ico");
             //path = File.ReadAllText("DataPath.txt"); //Idk
             //path = path.Replace("current\\", AppDomain.CurrentDomain.BaseDirectory); //Current directory
             //path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\WayText\\"; //Roaming
