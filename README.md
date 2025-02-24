@@ -8,8 +8,8 @@ It can help store information that you can't remember or type out easily like em
 Interface:
 + Press the default F1 hotkey to bring up or hide the app
 + Hover over an item to see a full preview of it
-+ Click on the table's items to copy. You can drag and drop them to any text box. Right-click on the table to bring up the menu
-+ Click on the table's header to either expand or shrink items
++ Click on an item to copy. You can drag and drop them to any text box. Right-click on the table to bring up the menu
++ Click on the column's header to either expand or shrink items
 + Hold down the left mouse on any empty space to drag the app. Right-click on empty space to hide the app
 + Left-click "Directory" to open the data folder. Right-click to open the app's directory
 
@@ -17,7 +17,7 @@ Data:
 + Data is stored locally on your machine (C:\\Users\*your user name*\WayText\). In case you are lost just click on the "Directory" link on the app
 + Folders represent Types and Files represent Categories
 + You can add number prefixes to any of the files or folders to sort them. The number prefix will be ignored in the app, but remember to number them correctly, or else it may cause bugs. Numbers in the middle of the file name don't have any effects
-For example 10, 1, 21, 210, 2, 30,...
+For example 1Happy, 2Sad, 11Dance, 24Jump,...
 + Table's contents are stored in .txt files. Take note that the elements inside the file are separated by 2 downlines
 + Data grouping can be customized in AppSettings.json
 + Cipher.txt stores the data for simple encryption actions
